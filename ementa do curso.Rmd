@@ -1,0 +1,42 @@
+---
+title: "Revisão Sistemática e Meta-Análise"
+author: "Marcelo Weber & Nicholas Marino"
+output: html_document
+---
+
+## Ementa do Curso  
+  
+__Descrição:__ a análise crítica da evidência disponível é fundamental para a inferência científica. Uma enorme quantidade de estudos é produzida todo ano, alguns apresentando evidência a favor de uma determinada hipótese e outros contra. Como então julgar o valor dessas evidências? Como determinar a resposta dominante de um determinado processo? Como sintetizar dados vindos de fontes diferentes? Esta disciplina visa fornecer as ferramentas necessárias para responder algumas destas perguntas.  
+  
+__Público Alvo:__ alunos de mestrado e doutorado.  
+  
+__Pré-requisitos:__ algum conhecimento teórico básico sobre métodos estatísticos.  
+  
+__Carga Horária:__ 40 horas.  
+  
+__Número de alunos:__ até 15.  
+  
+__Objetivo da Disciplina:__ esta disciplina tem como objetivo principal a apresentação de métodos envolvidos em um processo de síntese de dados. Serão apresentados os diferentes tipos de síntese científica formal e os métodos quantitativos envolvidos neste processo.  
+  
+__Metodologia:__ serão ministradas aulas presenciais, onde os tópicos abordados serão apresentados e discutidos com os alunos. Para algumas aulas, os alunos deverão utilizar seus computadores para realizar cálculos e análises junto ao programa estatístico.  
+  
+__Avaliação:__ será baseada na presença e participação do aluno, além da apresentação do projeto de síntese que será conduzido pelo mesmo.  
+  
+__Número de dias de aula:__ 6 dias, com 7 horas de aula por dia.  
+  
+
+### Bibliografia da Disciplina:  
+  
+1. J. Koricheva, J. Gurevitch & K. Mengerse, Handbook of meta-analysis in Ecology and Evolution. Princeton University Press
+2. Viechtbauer, 2010, J Stat Soft, Conducting meta-analyses in R with the metafor package
+3. Lortie, 2014, Oikos, Formalized synthesis opportunities for ecology - systematic reviews and meta-analyses
+4. Cadotte et al, 2012, Ecol Evol, Gauging the impact of meta-analysis on ecology
+5. Egger et al, 1997, Brit Med J, Bias in meta-analysis detected by a simple graphical test
+6. Duval & Tweedie, 2000, J Am Stat Assoc, A nonparametric 'trim and fill' method of accounting for publication bias in meta-analysis
+7. Harrison, 2011, Method Ecol Evol, Getting started with meta-analysis
+8. Koricheva & Gurevitch, 2014, J Ecol, Uses and misuses of meta-analysis in plant ecology
+9. Lortie et al, 2013, Res Synt Methods, How to critically read ecological meta-analyses
+10. Nakagawa & Cuthill, 2007, Biol Rev, Effect size, confidence interval and statistical significance - a practical guide for biologists
+11. Rosenberg, 2005, Evolution, The file-drawer problem revisited - a general weighted method for calculating fail-safe numbers in meta-analysis
+12. Borenstein, M.; Hedges, L.V.; Higgins, J.P.T. & Rothstein, H.R. 2009. Introduction to meta-analysis. John Wiley & Sons, Ltd
+13. Chen, D.-G. & Peace, K.E. 2013. Applied meta-analysis with R
