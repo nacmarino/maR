@@ -6,21 +6,21 @@ output: html_document
 
 ## Para os instrutores  
 
-1. Apresentação do Curso: Estrutura, cronograma, expectativas e avaliação  
+1. Apresentação do Curso: Estrutura, cronograma, expectativas e avaliação (Marcelo & Nicholas)  
   
-2. Revisão Sistemática e Meta-Análise: Histórico, definição, tipos e usos, escolhendo uma pergunta, Método PICO  
+2. Revisão Sistemática e Meta-Análise: Histórico, definição, tipos e usos, escolhendo uma pergunta, Método PICO (Marcelo)  
   
-3. Iniciando uma Revisão Sistemática: Buscando observações e moderadores  
+3. Iniciando uma Revisão Sistemática: Buscando observações e moderadores (Marcelo)  
   
-4. Extração de Dados e o Conceito de Tamanho do Efeito: Métodos disponíveis para extração e avaliação dos dados retirados dos estudos, introdução ao conceito do tamanho do efeito  
+4. Extração de Dados e o Conceito de Tamanho do Efeito: Métodos disponíveis para extração e avaliação dos dados retirados dos estudos, introdução ao conceito do tamanho do efeito (Nicholas)  
 
-5. Métricas de Tamanho do Efeito e Modelos de MA: Apresentação de algumas métricas de tamanho do efeito e tipos de modelos para a MA  
+5. Métricas de Tamanho do Efeito e Modelos de MA: Apresentação de algumas métricas de tamanho do efeito e tipos de modelos para a MA (Nicholas)   
   
-6. Variáveis Moderadoras e Diagnóstico de Modelos: Inclusão de variáveis moderadoras, análises por subgrupos e apresentação de ferramentas de diagnóstico dos modelos  
+6. Variáveis Moderadoras e Diagnóstico de Modelos: Inclusão de variáveis moderadoras, análises por subgrupos e apresentação de ferramentas de diagnóstico dos modelos (Nicholas)  
   
-7. Independência de Observações e Publication Bias: Viés de publicação, método filogenético e tamanhos de efeito não-independentes  
+7. Independência de Observações e Publication Bias: Viés de publicação, método filogenético e tamanhos de efeito não-independentes (Marcelo)  
   
-8. Apresentação e Curadoria da Meta-Análise: Boas práticas na apresentação da MA e na curadoria dos dados  
+8. Apresentação e Curadoria da Meta-Análise: Boas práticas na apresentação da MA e na curadoria dos dados (Nicholas)
   
 ## Para os alunos
 1. Escolha da Pergunta Individual: Alunos terão alguns dias para pensar em uma pergunta à ser respondida com RS ou MA  
