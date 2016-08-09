@@ -1,0 +1,278 @@
+---
+title:    "Extração de Dados"
+subtitle: "Revisão Sistemática e Meta-Análise"
+author:   "Marcelo Weber & Nicholas Marino"
+date:     "github.com/nacmarino/maR"
+output: 
+  ioslides_presentation:
+    smaller: true
+    wide: true
+---
+
+## Recapitulando  
+
+* __Revisão Sistemática__: "é uma síntese da pesquisa disponível em um tópico precisamento definido, usando métodos explícitos para identificar, selecionar, avaliar criticamente, e analisar os resultados relevantes". (_Koricheva et al, 2013_)
+
+* __Meta-Análise__: "é a análise estatística de uma ampla coleção de resultados de estudos com o propósito de integrar a evidência disponível". (_Glass, 1976_)
+
+* Uma meta-análise é um componente opcional da revisão sistemática.  
+
+## Extração de Dados
+
+* É uma das partes mais importantes de uma revisão sistemática - se não a parte mais importante;  
+* O tempo gasto aqui é o tempo que você nao vai gastar no futuro;  
+* Gaste tempo __planejando__:  
+    + O(s) critério(s) de inclusão para a extração de dados.    
+    + As informações que precisam ser extraídas de cada estudo.   
+    + O formato que cada variável extraída vai assumir na base de dados.  
+* __Documente todas as decisões e escolhas__.  
+
+## Fluxograma de Trabalho
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center', fig.height=5, fig.width=10}
+library(DiagrammeR)
+grViz("
+digraph {
+      
+      graph [layout = neato, fontsize = 16]
+      
+      node [shape = rectangle]
+
+      a [pos = '0,6!', label = 'Baixe a referência em PDF \n e identifique ele']
+      b [pos = '0,5!', label = 'Leia o PDF e determine se ele \n cumpre critério de inclusão']
+      c [pos = '-3,5!', label = 'Não cumpre', style = filled, fillcolor = red1, fontcolor = white]
+      d [pos = '0,4!', label = 'Cumpre', style = filled, fillcolor = green3]
+      e [pos = '-3,3!', label = 'Coloque a referência em uma \n pasta separada e anote a \n justificativa para rejeitá-lo']
+      f [pos = '0,3!', label = 'Coloque a referência em \n uma outra pasta']
+      g [pos = '0,2!', label = 'Marque e anote no PDF \n todas as informações relevantes do estudo']
+      i [pos = '0,1!', label = 'Adicionar à tabela de dados']
+      j [pos = '-3,1!', label = 'Informações para cada \n observação de cada estudo']
+      l [pos = '3,1!', label = 'Dados quantitativos do texto, \n tabelas e figuras na tabela']
+      m [pos = '0,0!', label = 'Uma linha para cada observação, \n uma coluna para cada informação', 
+            style = filled, fillcolor = blue2, fontcolor = white]
+
+      a->b
+      b->c[headport = 'e']
+      b->d[headport = 'n']
+      c->e
+      d->f
+      f->g
+      g->i
+      i->j[headport = 'e']
+      i->l[headport = 'w']
+      m->i
+      }
+      ")
+```
+
+## Critério de inclusão para a extração
+
+* A lista de artigos que segue para a extração vem a partir dos critérios de busca que você vai usar.  
+* O critério de busca inicial e a sua pergunta já estabelecem algumas diretrizes para o critério de extração de dados.  
+* Algumas perguntas relevantes:
+    + Que tipo de variável resposta será aceita?  
+    + Você quer estudos observacionais e/ou experimentais?  
+    + Que tipo de manipulação experimental será aceita (presença ou ausência, concentração, intervenção ativa,...)?  
+    + Como lidar com dados que estão faltando no estudo?
+    + Como lidar com estudos publicados múltiplas vezes?
+* __Documente todas as decisões e escolhas__.  
+
+## Para os trabalhos que forem incluídos...
+
+* __Documente todas as decisões e escolhas:__ 
+    + Faça uma lista de todos os trabalhos vistos, com o status e informações relevantes de cada um deles, que os levaram a ser aceitos ou rejeitados.    
+* Cada dado extraído deve receber um número de identificação.    
+* Cada linha recebe as informações de uma única observação.  
+* Em cada coluna, apenas um tipo de dado.  
+
+```{r echo=FALSE, size="large"}
+informacoes <- data.frame(id_estudo = 1:5, 
+                     autor = c("Fulano et al", "Beltrano", "Primano", "Hermano et al", "Ciclano & Juvano"), 
+                     ano = c(2013, 2014, 2016, 2010, 2010),
+                     revista = c("Vovo Mafalda", "Tio Patinhas", "Turma da Monica", "Mickey", "Galvalandia"), 
+                     entra = c("sim", "sim", "sim", "sim", "nao"),
+                     observacao = c("cumpre requisitos", "cumpre requisitos", "informacoes no SM", 
+                                    "multiplos niveis do tratamento", "experimento nao replicado"))
+knitr::kable(informacoes, align = 'c', format = "html")
+```
+
+## Que informações extrair?
+
+* O tipo de informação a ser extraída depende da natureza da sua pergunta:
+    + Informações básicas sobre o estudo: localidade, coordenadas, clima,...
+    + Outras informações sobre o estudo: tamanho da área amostrada, tipo de ecossistema, forma de amostragem, espécies envolvidas,...
+    + Informações sobre a manipulação de interesse: desenho aditivo ou substitutivo, níveis da manipulação, espécies adicionadas,...
+    + Dados quantitativos: médias, erros, tamanho amostral
+    + Outras informações relevantes
+
+## Mas o que são informações relevantes?  
+
+* Na sua cabeça..._"tudo pode ser potencialmente importante, e tudo influencia tudo"_.  
+    + Mas por quê _x_, _y_ ou _z_ podem ser importantes?  
+    + Como você espera que _a_ influencie _b_?  
+* Foque na sua pergunta - a partir dela, você vai ter noção do que é importante extrair.  
+* __Você está testando uma hipótese__...o que a literatura diz sobre ela?  
+* Que outros corpos de teoria podem indicar quais informações são importantes?  
+* __Estar familiarizado com a área que você está revisando é fundamental__.  
+
+## Quais das informações extrair?
+
+1. Quando variáveis resposta para um mesmo estudo forem correlacionadas, qual delas você vai preferir?  
+2. Quando os dados forem apresentados em diferentes tempos, qual deles você vai usar?  
+3. Se houverem múltiplos níveis de um tratamento, qual você vai usar?  
+4. Como você encara múltiplas observações a partir do mesmo estudo?  
+5. Como você encara dados do mesmo experimento/localidade apresentados em múltiplos estudos?  
+6. Se o estudo for multifatorial, como você extrai os dados do controle e tratamento?  
+
+## Como registrar cada informação?
+
+```{r echo=FALSE}
+estudo <- data.frame(id_estudo = 1:4, 
+                     pais = c("Brasil", "Patopolis", "Sao Paulo", "Disneylandia"), 
+                     especie = c("araucaria angustifolia", "theobroma cacao", "handroanthus albus", "cecropia hololeuca"),
+                     manipulacao = c("np", "n", "n", "np"),
+                     concentracao_n = c(50, 50, 50, 25),
+                     concentracao_p = c(50, 0, 0, 100))
+knitr::kable(estudo, align = 'c', format = "pandoc")
+```
+
+## Dados quantitativos
+
+* É a parte da extração de dados que consumirá mais tempo.  
+* Importante registrar de onde veio cada dado extraído para a meta-análise.
+* Médias
+* Erro
+* Tamanho da Amostra
+* Boxplot
+
+```{r echo=FALSE}
+quantitativos <- data.frame(id_estudo = 1:4, 
+                            media_controle = c(10, 6, 8, 20), 
+                            erro_controle = c(3.2, 2.1, 1.9, 0.4),
+                            n_controle = c(12, 10, 14, 20),
+                            tipo_erro_controle = c("se", "sd", "ci", "se"),
+                            media_tratamento = c(18, 12, 10, 21), 
+                            erro_tratamento = c(2.5, 0.9, 1.5, 0.6),
+                            n_tratamento = c(12, 10, 14, 20),
+                            tipo_erro_tratamento = c("se", "sd", "ci", "se"),
+                            boxplot = c("nao", "sim", "nao", "nao"))
+knitr::kable(quantitativos, align = 'c', format = "pandoc")
+```
+
+## Como tirar dados de boxplot?
+
+* Hozo et al, 2005, BMC Medical Research Technology, Estimating the mean and variance from the median, range, and the size of a sample
+
+```{r eval=FALSE}
+# a: mínimo; m: mediana; b: máximo; n: tamanho da amostra
+box_size <- function(a,m,b,n) {
+  mn_small <- (a+2*m+b)/4
+  mn_with_n <- (a+2*m+b)/4+(a-2*m+b)/(4*n)
+  s <- sqrt((a*a+m*m+b*b+(n-3)*((a+m)^2+(m+b)^2)/8-n*mn_small*mn_small)/(n-1))
+  s_form <- ((((a-(2*m)+b)^2)/4)+((b-a)^2))/12
+  sd_form <- sqrt(s_form)
+  s_range_4 <- (b-a)/4
+  s_range_6 <- (b-a)/6
+  sample_size <- n
+  median_data <- m
+  calculated <- c(mn_small, mn_with_n, median_data, s, s_form, sd_form, s_range_4, s_range_6, sample_size)
+  names(calculated) <- c("Mean", "Mean with n", "Median", "SD with n", 
+                         "Variance", "SD", "Range 4", "Range 6", "Sample Size")
+  return(calculated)
+}
+```
+
+## Para a média a partir do boxplot  
+
+* Se o n < 25:  
+
+```{r eval=FALSE}
+mn_small <- (a+2*m+b)/4
+```
+
+* Se o n > 25:  
+```{r eval=FALSE}
+  mn_with_n <- (a+2*m+b)/4+(a-2*m+b)/(4*n)
+```
+
+## Para a variância a partir do boxplot  
+
+* Se o n < 15  
+
+```{r eval=FALSE}
+s_form <- ((((a-(2*m)+b)^2)/4)+((b-a)^2))/12
+sd_form <- sqrt(s_form)
+```
+
+* Se o 15 < n < 70  
+
+```{r eval=FALSE}
+s_range_4 <- (b-a)/4
+```
+
+* Se o n > 70  
+
+```{r eval=FALSE}
+s_range_6 <- (b-a)/6
+```
+
+## E se houver mais de uma observação para um mesmo estudo?
+
+```{r echo=FALSE}
+exemplo <- data.frame(id_estudo = c(1,2,3,4,4), 
+           autor = c("Fulano et al", "Beltrano", "Primano", "Hermano et al", "Hermano et al"), 
+           ano = c(2013, 2014, 2016, 2010, 2010),
+           revista = c("Vovo Mafalda", "Tio Patinhas", "Turma da Monica", "Mickey", "Mickey"), 
+           entra = c("sim", "sim", "sim", "sim", "sim"),
+           observacao = c("cumpre requisitos", "cumpre requisitos", "informacoes no SM", 
+                          "multiplos niveis do tratamento", "multiplos niveis do tratamento"), 
+           pais = c("Brasil", "Patopolis", "Sao Paulo", "Disneylandia", "Disneylandia"), 
+           especie = c("araucaria angustifolia", "theobroma cacao", "handroanthus albus", "cecropia hololeuca", "cecropia hololeuca"),
+           manipulacao = c("np", "n", "n", "np", "n"),
+           concentracao_n = c(50, 50, 50, 25, 25),
+           concentracao_p = c(50, 0, 0, 100, 0))
+knitr::kable(exemplo, align = 'c', format = "pandoc")
+```
+
+
+## Devemos dividir esforços?  
+
+* Se você é desconfiado, cricri, ou gosta de carregar o mundo nas costas, não.  
+* Se você acredita nos outros, sabe o valor de trabalhar em equipe, ou quer agilizar o processo, sim.  
+* No fim das contas, a escolha depende do tamanho da meta-análise e das pessoas disponíveis para ajudar.  
+* É importante registrar quem extraiu os dados de que trabalho.  
+* Existe um método para determinar o grau de concordância entre revisores.  
+
+## Kappa assessment
+
+* Observado: grau de concordância entre dois revisores.  
+```{r echo=FALSE}
+tabela <- data.frame(Aceito = c(35, 5, 40), Rejeitado = c(20, 9, 29), Total = c(55, 14, 69))
+row.names(tabela) <- c("Aceito", "Rejeitado", "Total")
+knitr::kable(tabela, format = "html", align = 'c')
+```
+
+* Esperado ao acaso: ($\Sigma$Linha * $\Sigma$Coluna)/$\Sigma$Total
+```{r echo=FALSE}
+chance <- data.frame(Aceito = c(31.88, 8.11, 40), Rejeitado = c(23.11, 5.88, 29), Total = c(55, 14, 69))
+row.names(chance) <- c("Aceito", "Rejeitado", "Total")
+knitr::kable(chance, format = "html", align = 'c')
+```
+
+* Número de vezes em que ambos concordaram:
+    + Observado: 35 + 9 = 44
+    + Ao acaso: 31.88 + 5.88 = 37.76
+
+## Kappa assessment
+
+* K = (concordância observada - concordância esperada)/(numero total de observacoes - concordânca esperada)
+
+```{r}
+(44 - 37.76)/(69 - 37.76)
+```
+
+* Baixa concordância entre revisores merece atenção.  
+
+* __Documente todas as decisões e escolhas, e relate:__
+    + __se extração de dados foi feita por uma única pessoa ou uma equipe__;  
+    + __se feito por uma equipe, como você lidou com um possível viés individual__.  
