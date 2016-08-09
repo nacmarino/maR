@@ -102,8 +102,8 @@ knitr::kable(informacoes, align = 'c', format = "html")
     + Informações básicas sobre o estudo: localidade, coordenadas, clima,...
     + Outras informações sobre o estudo: tamanho da área amostrada, tipo de ecossistema, forma de amostragem, espécies envolvidas,...
     + Informações sobre a manipulação de interesse: desenho aditivo ou substitutivo, níveis da manipulação, espécies adicionadas,...
-    + Dados quantitativos: médias, erros, tamanho amostral
-    + Outras informações relevantes
+    + Dados quantitativos: médias, coeficientes de correlação, slopes, erros, tamanho amostral
+    + Outras informações relevantes (informações sobre as espécies, informações sobre background do solo,...)
 
 ## Mas o que são informações relevantes?  
 
