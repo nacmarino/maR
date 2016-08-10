@@ -11,29 +11,72 @@ output:
 
 ## Recapitulando  
 
-Usar Nakagawa & Cuthill, 2007, Biol Rev
+* __Meta-Análise__: "é a análise estatística de uma ampla coleção de resultados de estudos com o propósito de integrar a evidência disponível". (_Glass, 1976_)  
 
-## Intervalos de confiança
+* É importante determinar a sua pergunta e objetivos com clareza: **P**opulation, **I**ntervention, **C**omparison, **O**utcome - (**PICO**).  
 
-## Meta-analise vs testes de significância
+* A extração de dados precisa ser muito bem planejada e o processo muito bem conduzido.  
 
-## Pensamento meta-analítico
+* A qualidade da meta-análise depende do que você coloca nela: _garbage in, garbage out_.  
 
-## Tipos de medida
+## Meta-analise vs Testes de Significância
 
-Binários
-Contínuos
-Comparando grupos?
+## Intervalos de Confiança
 
-## Hedge's d
+## Pensamento Meta-analítico
 
-## Log response ratio
+## Pensamento Meta-analítico
 
-## Tabelas de contingência
-Rate Ratio
-Odds Ratio
+* Para toda métrica, dois parâmetros são normalmente estimados:
+    + A métrica de effect size _per se_, que é a medida do tamanho do efeito de intesse.  
+    + Uma métrica que descreva a incerteza sobre a estimativa do effect size - a _variância_.  
+* Estes dois parâmetros são necessários para rodarmos qualquer modelo de meta-análise:
+    + Métrica de effect size é a variável resposta (como já esperado);
+    + O inverso da variância é usado para ponderar cada observação: observações mais precisas têm mais peso do que as observações com baixa precisão.  
+* Portanto, precisamos calcular os dois parâmetros para realizarmos a meta-análise: a falta de algum dos dados pode limitar a escolha da métrica de effect size e também o uso adequado dos modelos.  
+
+## Tipos de Medida
+
+>- Medidas de tamanho de efeito podem ser postas em dois grupos:
+    + __Binárias__: resposta _x_ e de resposta _y_, resposta _z_ em uma população _k_,...
+    + __Contínuas__: valor médio de _a_, força da relação entre _b_ e _c_,...
+    
+>- Medidas de efeito também podem ser usadas com diferentes objetivos:
+    + __Determinar a magnitude e/ou direção de um fenômeno__: coeficientes de correlação, slopes, valores de média, predominância de um efeito...;
+    + __Comparar grupos__: comparação entre médias.
+
+>- Em ecologia, a maior parte das meta-análises envolve comparações entre grupos, mas a determinação da magnitude/direção de um fenômeno ecológico também é bastante marcante.
+
+## Hedge's _d_
+
+* Também conhecido como _Standardized Mean Difference_.  
+* É um tipo muito comum de métrica de tamanho de efeito em meta-análises na ecologia.  
+* Estimativa da diferença entre dois grupos (normalmente um tratamento e um controle), padronizado pelo desvio padrão agrupado dos dois grupos e tamanho amostral.  
+
+<p align="center">
+<img src="figs/hedges_d.png" height="100px"></img>
+</p>
+
+<p align="center">
+<img src="figs/combined_correction.png" height="60px"></img>
+</p>
+
+<p align="center">
+<img src="figs/variance_hedges.png" height="60px"></img>
+</p>
+
+## Log Response Ratio
 
 ## Correlação
 
 ## Slopes
 
+## Outras Métricas
+Rate Ratio
+Odds Ratio
+
+## Transformando entre métricas
+
+## Resumindo
+
+* Literatura Recomendada: Nakagawa & Cuthill, 2007, Biol Rev, Effect size, confidence interval and statistical significance - a practical guide for biologists
