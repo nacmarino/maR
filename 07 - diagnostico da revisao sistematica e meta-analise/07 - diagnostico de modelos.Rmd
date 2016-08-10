@@ -1,0 +1,10 @@
+---
+title: "Diagnóstico de Modelos"
+subtitle: "Revisão Sistemática e Meta-Análise"
+author:   "Marcelo Weber & Nicholas Marino"
+date:     "github.com/nacmarino/maR"
+output: 
+  ioslides_presentation:
+    smaller: true
+    wide: true
+---
