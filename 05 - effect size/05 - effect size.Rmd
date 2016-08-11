@@ -19,21 +19,46 @@ output:
 
 * A qualidade da meta-análise depende do que você coloca nela: _garbage in, garbage out_.  
 
-## Meta-analise vs Testes de Significância
+## Testes de Significância
+
+* É o método mais utilizado para determinar a significância e importância de um efeito: "a ditadura dos valores de p".  
+    + A hipótese nula raramente é realista ou plausível;
+    + Dá importância demais a uma única hipótese que pode ser consistente com os dados (quando na verdade, podem existir múltiplas);
+    + Trabalha com aceite ou rejeição de uma hipótese, ao invés de sua plausibilidade;
+    + Sofre forte influência do tamanho amostral e de dados aberrantes.
+
+<p align="center">
+<img src="figs/p_values.png" height="300px"></img>
+</p>
+
+## Tamanho do Efeito
+
+* É um parâmetro estatístico que pode ser usado para comparar, em uma mesma escala, os resultados de diferentes estudos no qual um efeito de interesse tenha sido medido.
+* Você já usa métricas de tamanho do efeito sem saber:
+    + Quando você estima o efeito de uma variável em uma regressão;
+    + Quando você compara os resultados de diferentes tratamentos;
+    + Quando você avalia o efeito de diferentes níveis do mesmo tratamento.
+* Tamanho do Efeito _vs_ Significância do Efeito.  
 
 ## Intervalos de Confiança
 
-## Pensamento Meta-analítico
+
 
 ## Pensamento Meta-analítico
 
-* Para toda métrica, dois parâmetros são normalmente estimados:
+<p align="center">
+<img src="figs/image.png" height="400px"></img>
+</p>
+
+## Pensamento Meta-analítico
+
+* Em uma meta-análise precisamos estimar dois parâmetros:
     + A métrica de effect size _per se_, que é a medida do tamanho do efeito de intesse.  
     + Uma métrica que descreva a incerteza sobre a estimativa do effect size - a _variância_.  
 * Estes dois parâmetros são necessários para rodarmos qualquer modelo de meta-análise:
     + Métrica de effect size é a variável resposta (como já esperado);
     + O inverso da variância é usado para ponderar cada observação: observações mais precisas têm mais peso do que as observações com baixa precisão.  
-* Portanto, precisamos calcular os dois parâmetros para realizarmos a meta-análise: a falta de algum dos dados pode limitar a escolha da métrica de effect size e também o uso adequado dos modelos.  
+* A falta de algum dos dados pode limitar a escolha da métrica de effect size e também o uso adequado dos modelos.  
 
 ## Tipos de Medida
 
@@ -79,4 +104,10 @@ Odds Ratio
 
 ## Resumindo
 
-* Literatura Recomendada: Nakagawa & Cuthill, 2007, Biol Rev, Effect size, confidence interval and statistical significance - a practical guide for biologists
+## Literatura Recomendada
+
+1. Nakagawa & Cuthill, 2007, Biol Rev, Effect size, confidence interval and statistical significance - a practical guide for biologists
+
+2. Rosenberg et al, 2013, Effect Sizes: Conventional choices and calculations, In: Handbook of meta-analysis in ecology and evolution (Capítulo 6)
+
+3. Mengersen & Gurevitch, 2013, Using other metrics of effect size in meta-analysis, In: Handbook of meta-analysis in ecology and evolution (Capítulo 7)
