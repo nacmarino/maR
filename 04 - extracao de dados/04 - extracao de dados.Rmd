@@ -383,3 +383,15 @@ knitr::kable(chance, format = "html", align = 'c')
 * Ao criar sua planilha da revisão sistemática ou meta-análise tente aproveitar ao máximo da estrutura de uma base de dados;
 * Não se esqueça da regra de ouro: uma linha, uma observação; uma coluna, um tipo informação.  
 * __O mais importante: documente todas as decisões e escolhas que você fizer aqui__.
+
+## Literatura Recomendada
+
+1. Hozo et al, 2005, BMC Medical Research Technology, Estimating the mean and variance from the median, range, and the size of a sample
+
+2. Borer et al, 2009, Bull Ecol Soc Am, Some simple guidelines for effective data management
+
+3. Zimmerman, 2008, Sci Tech Human Val, New knowledge from old data - the role of standards in the sharing and reuse of ecological data
+
+4. Whitlock, 2010, Trends Ecol Evol, Data archiving in ecology and evolution - best practices 
+
+5. Curtis et al, 2013, Extraction and critical appraisal of data, In: Handbook of meta-analysis in ecology and evolution (Capítulo 5)
