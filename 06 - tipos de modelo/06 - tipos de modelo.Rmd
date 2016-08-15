@@ -8,3 +8,9 @@ output:
     smaller: true
     wide: true
 ---
+
+## Recapitulando  
+
+## Resumindo
+
+## Literatura Recomendada
