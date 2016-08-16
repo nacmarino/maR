@@ -1,5 +1,5 @@
 ---
-title: "Tipos de Modelo"
+title:    "Modelos para Meta-Análise"
 subtitle: "Revisão Sistemática e Meta-Análise"
 author:   "Marcelo Weber & Nicholas Marino"
 date:     "github.com/nacmarino/maR"
@@ -11,6 +11,218 @@ output:
 
 ## Recapitulando  
 
+* __Meta-Análise__: "é a análise estatística de uma ampla coleção de resultados de estudos com o propósito de integrar a evidência disponível". (_Glass, 1976_)
+
+* É essencial extrairmos uma métrica de tamanho de efeito e também a sua variância, para que o peso de cada estudo seja proporcional à sua precisão.  
+* Com estas informações, queremos chegar a um valor que defina a direção e/ou magnitude de um efeito/padrão/processo, a incerteza associada a este valor e fontes que expliquem esta heterogeneidade.
+
+## Modelos para Meta-Análise
+
+>- Existem diversos tipos de modelo para serem usados, cuja escolha:
+    + __Reflete o objetivo da meta-análise__: estimar um efeito _vs_ explorar heterogeneidade;
+    + __Define como as estimativas de cada estudo serão combinadas__: todos os estudos são iguais _vs_ estudos diferem em sua 'qualidade';
+    + __Descreve as fontes de heterogeneidade entre estudos__: erro amostral _vs_ variação entre estudos;
+    + __Determina o tipo de inferência que pode ser feita__: população de estudos analisada _vs_ todos os estudos, até os desconhecidos.  
+>-  Desta forma, a escolha do modelo reflete o(s) objetivo(s) da sua meta-análise;  
+>-  No geral, os modelos de meta-análise se dividem em dois grandes grupos: _fixed-effects models_ e _random-effects models_.  
+
+## Fixed-effects model
+
+* Em um fixed-effects model, nós assumimos que:
+    + Todos os estudos pertencem a uma mesma população e estão medindo a mesma coisa.  
+    + A variabilidade existente é explicada unicamente por erro na amostragem em cada estudo;  
+    + Varibilidade causada por diferenças entre estudos é ínfima ou inexistente.  
+* Exemplo de fixed-effects model:  
+<center>T~i~ = $\mu$ + $\epsilon$~i~\center
+
+<p align="center">
+<img src="figs/fixed_effects.png" height="300px"></img>
+</p>
+
+## Fixed-effects model
+
+* A incerteza na estimativa de cada estudo gira ao redor do efeito comum que estes estão medindo.  
+* Generalizações são restritas aos estudos incluídos na meta-análise.  
+
+<p align="center">
+<img src="figs/fixed_effects_variance.png" height="300px"></img>
+</p>
+
+* Cada estudo então contribui com uma estimativa do efeito real, que deve ser ponderado pela sua imprecisão ao medir este efeito.  
+
+## Fixed-effects models
+
+* No geral, o peso de cada estudo (_W~i~_) em uma meta-análise é proporcional ao inverso de sua variância (s~i~): quanto maior variância de um estudo, menor o seu peso ao estimar o efeito real.  
+<center>_W~i~_ = $\frac{1}{s_i}$\center
+* Neste sentido, o modelo de meta-análise é semelhante à uma _weighted regression_: o efeito real é calculado com base em cada medida de effect size (ES~i~:_d~i~_, _LRR~i~_, _r~i~_,...) e o peso associado à ele (_W~i~_).  
+<center>T = $\frac{\Sigma ES_i W_i}{\Sigma W_i}$ (onde T, é o efeito efeito comum entre todos os estudos)\center
+* A variância em torno de T (V~T~) é dada por:  
+<center>V~T~ = $\frac{1}{\Sigma W_i}$\center
+* Com isto, é possível calcular o intervalo de confiança ao redor de T, assim como realizar testes de significância com o valor estimado de T (o valor de T segue uma distribuição normal):  
+
+<center>95% CI = T ± 1.96 $\sqrt{V_T}$\center  
+  
+<center>_z_ = $\frac{T}{\sqrt{V_T}}$\center  
+
+## No R
+
+* Vamos usar novamente o pacote `metafor`, e explorar o conjunto de dados `dat.bcg`.  
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+library(metafor)
+dat <- escalc(measure="RR", ai=tpos, bi=tneg, ci=cpos, di=cneg, data=dat.bcg)
+dat
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(metafor)
+dat <- escalc(measure="RR", ai=tpos, bi=tneg, ci=cpos, di=cneg, data=dat.bcg)
+knitr::kable(dat, align = 'c', format = "html")
+```
+
+## No R
+
+* A função `rma` é utilizada para ajustar os modelos de meta-análise no `metafor`.
+* `method = "FE"` diz para o `metafor` que você quer usar um fixed-effects model.
+
+```{r}
+rma(yi = yi, vi = vi, data = dat, method = "FE")
+```
+
+## Random-effects model
+
+* Em um random-effects model:
+    + Estudos pertencem a diferentes subpopulações que compõem uma população maior: cada estudo está estimando o verdadeiro efeito em sua subpopulação.  
+    + A variabilidade existente é explicada por erro na amostragem em cada estudo e por diferenças entre estudos.  
+* Em um random-effects model, temos dois componenetes de variância:
+    + Variância dentro dos estudos: $\epsilon$~i~ (__within-study variance__)
+    + Variância entre os estudos: $\tau^2_i$ (__between-study variance__)
+* Você é capaz de explorar onde existe maior variância nos resultados: dentro ou entre estudos - em outras palavras: _consistência_ ou _contingência_.  
+
+## Random-effects model
+
+* Em um random-effects model:  
+<center>T~i~ = $\theta_i$ + $\epsilon$~i~ (efeito real em cada estudo) \center  
+
+<center>$\mu$ = T~i~ + $\tau^2_i$ (efeito combinado real) \center  
+
+<p align="center">
+<img src="figs/random_effects.png" height="300px"></img>
+</p>
+
+## Random-effects model  
+
+* A incerteza na estimativa de cada estudo gira ao redor do efeito comum que estes estão medindo.  
+* Generalizações podem ser feitas aos estudos incluídos na meta-análise e também aqueles que são deconhecidos.  
+
+<p align="center">
+<img src="figs/random_effects_variance.png" height="300px"></img>
+</p>
+
+In a random-effects model, we might be interested in “borrowing strength” from the combined set of studies to provide better estimates of the true effects of each of the studies, as well as estimating the overall mean effect. 
+
+## No R
+
+## Fixed- _vs_ Random-effects models
+
+In practice, we may not know whether a fixed-or random-effects model is most appropriate. The random-effects model is in general conceptually applicable to most realistic meta-analysis contexts, apart from very carefully designed and similar experiments. Random-effects models are therefore the conceptual basis for more complex models in most ecological meta-analyses. However, this model does require estimation of an additional between-study variance parameter; poor estimation of this parameter due to small (within-study) sample sizes or a small number of studies might result in equally poor estimation of the other model parameters, and possibly in misleading inferences. Therefore, a general recommendation is to fit a random-effects model and assess the size and uncertainty of the estimate of between-study variation; if this is sufficiently small or too uncertain, a fixed-effects model might be adopted instead as a practical matter
+
+In ecological and evolutionary meta-analyses, although we may acknowledge that the study estimates are measuring the same overall effect, we also typically want to account for additional variation in study-specific effects that are due to different experimental conditions, locations, and so on. In this case, we do not want to explicitly characterize or model these differences, but we do want to account for this additional random variation in the effects among studies in our model. One option is to allow for different study-specific effect sizes, and assume that the difference in the true effect sizes for the different studies is due to random variation around an overall mean effect, where the mean effect characterizes the population of studies. Thus, the model should encompass both the variance of effects between studies (due to random differences in their true effect sizes) as well as the variance of estimates within studies (due only to sampling variance or sampling error). This is typically called a random-effects model.
+
+Note that a fixed-effects model can be considered as the extreme of a random-effects model, in which the between-study variance is either zero (i.e., the studies have the same underlying parameters) or infinity (i.e., the study parameters are not measuring a common effect of any kind).
+
+## Mixed-effects models
+
+We now go one step further in building the meta-analysis
+model; we acknowledge that there
+is variation among studies, but instead of simply including a general variance term to explain
+this heterogeneity, as in the random-effects
+model, we instead wish to identify and characterize
+the source of the variation. Thus there is a set of study characteristics that we wish to include
+in the meta-analysis
+model.
+
+A mixed model is a form of meta-regression
+that encompasses both fixed and random effects,
+with fixed differences among categories of studies, and random variation among studies within
+categories (plus sampling error within studies, which is present in all models).
+
+## No R
+
+## Outros modelos mais complexos
+
+A regression meta-analysis
+model, or meta-regression,
+is a general term for a meta-analysis
+that includes factors (discrete or categorical variables) and/or covariates (continuous variables)
+to describe variation among study effects. This term embraces all of the models described
+below. (Sometimes regression is used to describe a model with only continuous covariates. In
+this chapter, regression is used to describe a model with any combination of continuous, ordinal,
+or categorical covariates.)
+
+A hierarchical model is a form of regression meta-analysis
+(meta-regression)
+with nested
+subgroups, so that studies are combined into subgroups that may themselves be combined into
+larger groups, and so on. An example from the Lepidoptera mating model might be one in which
+studies are combined into subgroups according to species, and species are combined into groups
+according to suborder, and these subgroups are then combined into a single overall group.
+A factorial model is a form of regression meta-analysis
+with (the same) categorical factors
+crossed within each study. For example, Gurevitch et al. (2000) combined studies in a factorial
+meta-analysis
+in which both competition and predation were manipulated within each study,
+while the overall effects of competition across studies, predation across studies, and the overall
+interaction between competition and predation were of interest.
+
+## Só para ficar didático
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center', fig.width=10}
+library(DiagrammeR)
+grViz("
+digraph {
+      
+      graph [layout = neato]
+      
+      node [shape = rectangle, fontsize = 16]
+
+      a [pos = '0,4!', label = 'Objetivo da Meta-Análise']
+      b [pos = '-4,3!', label = 'Estimar um Efeito']
+      c [pos = '4,3!', label = 'Explicar Heterogeneidade \n [Quero usar fatores e covariáveis para \n descrever variação entre estudos]']
+      d [pos = '-6,1.5!', label = 'Fixed-Effects Model \n [Variação ocorre por erro de \n amostragem entre estudos]']
+      e [pos = '-2,1.5!', label = 'Random-Effects Model \n [Variação ocorre por erro de \n amostragem e diferenças entre estudos]']
+      f [pos = '2,1.5!', label = 'Fixed-Effects Model  \n [Variação ocorre por erro de \n  amostragem e por características \n conhecidas dos estudos]']
+      g [pos = '6,1.5!', label = 'Mixed-Effects Model \n [Variação ocorre por erro de \n  amostragem, diferenças entre estudos e \n suas características conhecidas]']
+      h [pos = '3.5,0!', label = 'Hierárquico \n [Grupos Aninhados]']
+      i [pos = '6,0!', label = 'Fatorial \n [Fatores e Interações]']
+      j [pos = '8.5,0!', label = 'Regressão \n [Variáveis Contínuas]']
+
+      a->b
+      a->c
+      b->d
+      b->e
+      c->f
+      c->g
+      g->h
+      g->i
+      g->j
+      }
+      ")
+```
+
 ## Resumindo
 
 ## Literatura Recomendada
+
+1. Nakagawa & Santos, 2012, Evol Ecol, Methodological issues and advances in biological meta-analysis
+
+2. Harrison, 2011, Methods Ecol Evol, Getting started with meta-analysis
+
+3. Mengersen et al, 2013, Statistical models and approaches to inference, In: Handbook of meta-analysis in ecology and evolution (Capítulo 8)
+
+4. Rosenberg, 2013, Moment and least-squares based approaches to meta-analytic inference, In: Handbook of meta-analysis in ecology and evolution (Capítulo 9)
+
+5. Mengersen & Schmid, 2013, Maximum likelihood approaches to meta-analysis, In: Handbook of meta-analysis in ecology and evolution (Capítulo 10)
+
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({  "HTML-CSS": { minScaleAdjust: 135, availableFonts: [] }  });
+</script>
