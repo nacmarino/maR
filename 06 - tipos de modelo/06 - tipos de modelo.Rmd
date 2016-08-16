@@ -28,20 +28,22 @@ output:
 
 ## Fixed-effects model
 
+* Usado para estimar a natureza de um efeito;
+* Baseado no pressuposto de normalidade;
 * Em um fixed-effects model, nós assumimos que:
     + Todos os estudos pertencem a uma mesma população e estão medindo a mesma coisa.  
     + A variabilidade existente é explicada unicamente por erro na amostragem em cada estudo;  
     + Varibilidade causada por diferenças entre estudos é ínfima ou inexistente.  
 * Exemplo de fixed-effects model:  
-<center>T~i~ = $\mu$ + $\epsilon$~i~\center
+<center>$\mu$ = T~i~ + $\epsilon$~i~\center
 
 <p align="center">
-<img src="figs/fixed_effects.png" height="300px"></img>
+<img src="figs/fixed_effects.png" height="250px"></img>
 </p>
 
 ## Fixed-effects model
 
-* A incerteza na estimativa de cada estudo gira ao redor do efeito comum que estes estão medindo.  
+* A incerteza na estimativa de cada estudo está contida dentro da variabilidade do efeito comum que estes estão medindo.  
 * Generalizações são restritas aos estudos incluídos na meta-análise.  
 
 <p align="center">
@@ -55,14 +57,14 @@ output:
 * No geral, o peso de cada estudo (_W~i~_) em uma meta-análise é proporcional ao inverso de sua variância (s~i~): quanto maior variância de um estudo, menor o seu peso ao estimar o efeito real.  
 <center>_W~i~_ = $\frac{1}{s_i}$\center
 * Neste sentido, o modelo de meta-análise é semelhante à uma _weighted regression_: o efeito real é calculado com base em cada medida de effect size (ES~i~:_d~i~_, _LRR~i~_, _r~i~_,...) e o peso associado à ele (_W~i~_).  
-<center>T = $\frac{\Sigma ES_i W_i}{\Sigma W_i}$ (onde T, é o efeito efeito comum entre todos os estudos)\center
+<center>$\mu$ = $\frac{\Sigma ES_i W_i}{\Sigma W_i}$ (onde $\mu$, é o efeito efeito comum entre todos os estudos)\center
 * A variância em torno de T (V~T~) é dada por:  
 <center>V~T~ = $\frac{1}{\Sigma W_i}$\center
-* Com isto, é possível calcular o intervalo de confiança ao redor de T, assim como realizar testes de significância com o valor estimado de T (o valor de T segue uma distribuição normal):  
+* Com isto, é possível calcular o intervalo de confiança ao redor de $\mu$, assim como realizar testes de significância com o valor estimado de $\mu$ (que segue uma distribuição normal):  
 
-<center>95% CI = T ± 1.96 $\sqrt{V_T}$\center  
+<center>95% CI = $\mu$ ± 1.96 $\sqrt{V_T}$\center  
   
-<center>_z_ = $\frac{T}{\sqrt{V_T}}$\center  
+<center>_z_ = $\frac{\mu}{\sqrt{V_T}}$\center  
 
 ## No R
 
@@ -90,6 +92,8 @@ rma(yi = yi, vi = vi, data = dat, method = "FE")
 
 ## Random-effects model
 
+* Usado para estimar a natureza de um efeito;
+* Baseado no pressuposto de normalidade;
 * Em um random-effects model:
     + Estudos pertencem a diferentes subpopulações que compõem uma população maior: cada estudo está estimando o verdadeiro efeito em sua subpopulação.  
     + A variabilidade existente é explicada por erro na amostragem em cada estudo e por diferenças entre estudos.  
@@ -111,68 +115,84 @@ rma(yi = yi, vi = vi, data = dat, method = "FE")
 
 ## Random-effects model  
 
-* A incerteza na estimativa de cada estudo gira ao redor do efeito comum que estes estão medindo.  
+* O efeito comum que os estudos estão medindo contém a variabilidade entre estudos e também dentro de cada estudo.
+* Isto afeta diretamente a estimativa do peso de cada estudo no modelo da meta-análise:
+<center>_W~i~_ = $\frac{1}{s_i + \tau^2}$\center
+* Aqui, $\tau^2$ representa o componente da heterogeneidade total que é originária entre estudos (resolução dos cálculo para chegar a este valor está no Box 9.2, Capítulo 9 do livro de Meta-Análise).  
 * Generalizações podem ser feitas aos estudos incluídos na meta-análise e também aqueles que são deconhecidos.  
 
 <p align="center">
-<img src="figs/random_effects_variance.png" height="300px"></img>
+<img src="figs/random_effects_variance.png" height="250px"></img>
 </p>
-
-In a random-effects model, we might be interested in “borrowing strength” from the combined set of studies to provide better estimates of the true effects of each of the studies, as well as estimating the overall mean effect. 
 
 ## No R
 
-## Fixed- _vs_ Random-effects models
+* Usando novamente o conjunto de dados `dat.bcg` do pacote `metafor`, vamos ajustar um random-effects model também com a função `rma`.  
+* Neste caso, você não precisa determinar o argumento `method`: por padrão, a função usa `REML`.  
 
-In practice, we may not know whether a fixed-or random-effects model is most appropriate. The random-effects model is in general conceptually applicable to most realistic meta-analysis contexts, apart from very carefully designed and similar experiments. Random-effects models are therefore the conceptual basis for more complex models in most ecological meta-analyses. However, this model does require estimation of an additional between-study variance parameter; poor estimation of this parameter due to small (within-study) sample sizes or a small number of studies might result in equally poor estimation of the other model parameters, and possibly in misleading inferences. Therefore, a general recommendation is to fit a random-effects model and assess the size and uncertainty of the estimate of between-study variation; if this is sufficiently small or too uncertain, a fixed-effects model might be adopted instead as a practical matter
+```{r}
+rma(yi = yi, vi = vi, data = dat)
+```
 
-In ecological and evolutionary meta-analyses, although we may acknowledge that the study estimates are measuring the same overall effect, we also typically want to account for additional variation in study-specific effects that are due to different experimental conditions, locations, and so on. In this case, we do not want to explicitly characterize or model these differences, but we do want to account for this additional random variation in the effects among studies in our model. One option is to allow for different study-specific effect sizes, and assume that the difference in the true effect sizes for the different studies is due to random variation around an overall mean effect, where the mean effect characterizes the population of studies. Thus, the model should encompass both the variance of effects between studies (due to random differences in their true effect sizes) as well as the variance of estimates within studies (due only to sampling variance or sampling error). This is typically called a random-effects model.
+## Fixed- _vs_ Random-effects model
 
-Note that a fixed-effects model can be considered as the extreme of a random-effects model, in which the between-study variance is either zero (i.e., the studies have the same underlying parameters) or infinity (i.e., the study parameters are not measuring a common effect of any kind).
+* Qual modelo utilizar?
+    + RE é mais realístico à meta-análises em ecologia, uma vez que é impossível replicar perfeitamente os experimentos e sistemas de estudos são naturalmente diferentes;
+    + No entanto, RE requer a estimativa de um parâmetro adicional relacionado à variância entre estudos, que pode ter estimativa enviesada por pequeno tamanho amostral ou número de estudos - uso de REML reduz um pouco este problema;
+    + Por conta disso, intervalos de confiança estimados com RE models tendem a ser mais amplos do que aqueles estimados com FE models.
+<p align="center"> 
+```{r echo=FALSE}
+mod1 <- rma(yi = yi, vi = vi, data = dat, method = "FE")
+mod2 <- rma(yi = yi, vi = vi, data = dat)
+knitr::kable(data.frame(Modelo = c("Fixed-effects model", "Random-effects model"), "Estimate" = c(mod1$b, mod2$b), "SE" = c(mod1$se, mod2$se), 
+           "CI Inferior" = c(mod1$ci.lb, mod2$ci.lb), "CI Superior" = c(mod1$ci.ub, mod2$ci.ub)), format = "html", align = "c", digits = 2)
+```
+</p>
+
+* Note que caso o $\tau^2$ seja 0 (ou muito próximo à zero), a estimativa do peso de cada estudo é reduzida àquela de um fixed-effects model;
+* Por conta disso, se você precisa, o ideal é tentar um random-effects model e caso o valor de $\tau^2$ seja baixo aí sim adotar um fixed-effects model.
 
 ## Mixed-effects models
 
-We now go one step further in building the meta-analysis
-model; we acknowledge that there
-is variation among studies, but instead of simply including a general variance term to explain
-this heterogeneity, as in the random-effects
-model, we instead wish to identify and characterize
-the source of the variation. Thus there is a set of study characteristics that we wish to include
-in the meta-analysis
-model.
+* É utilizado quando queremos não só estimar um efeito, mas também explorar a heterogeneidade ao redor dele;  
+* Acomoda uma fração aleatória da heterogeneidade (random-effects) - causada por variância entre- e dentro- dos estudos -, assim como uma fração fixa (característica dos estudos que queremos explorar);  
+* Neste sentido, ao invés de 'jogar' toda a heterogeneidade entre estudos para um termo de variância, parte dela é atribuída a _moderadores_ (veremos mais sobre isso na próxima aula);
+* No R, basta usarmos a função `rma` no `metafor` e especificar a variável que queremos analisar com o argumento `mods`;
+* Você também pode buscar explorar a heterogeneidade ao redor da estimativa do efeito utilizando um fixed-effects model: basta especificar o argumento `methods = "FE"` na mesma estrutura do modelo abaixo.
 
-A mixed model is a form of meta-regression
-that encompasses both fixed and random effects,
-with fixed differences among categories of studies, and random variation among studies within
-categories (plus sampling error within studies, which is present in all models).
+```{r}
+dat3 <- rma(yi = yi, vi = vi, data = dat, mods = ~alloc)
+```
 
 ## No R
 
+```{r echo=FALSE}
+dat3
+```
+
 ## Outros modelos mais complexos
 
-A regression meta-analysis
-model, or meta-regression,
-is a general term for a meta-analysis
-that includes factors (discrete or categorical variables) and/or covariates (continuous variables)
-to describe variation among study effects. This term embraces all of the models described
-below. (Sometimes regression is used to describe a model with only continuous covariates. In
-this chapter, regression is used to describe a model with any combination of continuous, ordinal,
-or categorical covariates.)
+* Existem outros tipos de modelos de meta-análise que você pode encontrar por aí:
+    + __Meta-Regressão__: é mais uma terminologia para representar os modelos em que a heterogeneidade é explicada por variáveis contínuas (embora algumas pessoas também usem este termo quando usam variáveis categóricas);
+    + __Modelo Hierárquico ou Multivariado__: usado quando estrutura é similar à uma ANOVA aninhada ou quando existe correlação entre as observações. Em alguns casos, você acaba fazendo este tipo de modelo de forma artificial para explorar heterogeneidade em subgrupos dentro dos grupos testados (no R: `rma.mv`).  
+    + __Modelo Fatorial__: usado quando a meta-análise segue um desenho fatorial.
+    + __Modelo via Generalized Linear (Mixed-Effects) Models__: similar aos fixed-, random- e mixed-effects model, mas permite usar outras famílias de distribuição de variáveis aleatórias (no R: `rma.glmm`).
 
-A hierarchical model is a form of regression meta-analysis
-(meta-regression)
-with nested
-subgroups, so that studies are combined into subgroups that may themselves be combined into
-larger groups, and so on. An example from the Lepidoptera mating model might be one in which
-studies are combined into subgroups according to species, and species are combined into groups
-according to suborder, and these subgroups are then combined into a single overall group.
-A factorial model is a form of regression meta-analysis
-with (the same) categorical factors
-crossed within each study. For example, Gurevitch et al. (2000) combined studies in a factorial
-meta-analysis
-in which both competition and predation were manipulated within each study,
-while the overall effects of competition across studies, predation across studies, and the overall
-interaction between competition and predation were of interest.
+## Observações
+
+* No R, o `metafor` encara que cada linha pertence à um estudo distinto - o que muitas vezes não é o caso (um estudo com múltiplas observações). Se você quiser especificar que a _hierarquia_ das observações está no nível do estudo (e não do da observação) você pode usar a função `rma.mv` e especificar o argumento `random = ~ 1|estudo`:
+
+```{r eval=FALSE}
+rma.mv(yi = yi, V = vi, mods = ~alloc, random = ~1|trial, data = dat)
+```
+
+* Você também pode adicionar uma estrutura de correlação às duas observações utilizando o argumento `random` na função `rma.mv`; neste caso, o nível que define a estrutura da correlação vem no lado esquerdo do argumento:
+
+```{r eval=FALSE}
+rma.mv(yi = yi, V = vi, mods = ~alloc, random = ~author|trial, data = dat)
+```
+
+* Você também pode rodar os modelos meta-analíticos usando as funções `lme` (pacote `nlme`) e `lmer` (pacote `lme4`), utilizando o argumento `weights` para determinar o peso de cada observação/estudo.
 
 ## Só para ficar didático
 
@@ -188,13 +208,13 @@ digraph {
       a [pos = '0,4!', label = 'Objetivo da Meta-Análise']
       b [pos = '-4,3!', label = 'Estimar um Efeito']
       c [pos = '4,3!', label = 'Explicar Heterogeneidade \n [Quero usar fatores e covariáveis para \n descrever variação entre estudos]']
-      d [pos = '-6,1.5!', label = 'Fixed-Effects Model \n [Variação ocorre por erro de \n amostragem entre estudos]']
-      e [pos = '-2,1.5!', label = 'Random-Effects Model \n [Variação ocorre por erro de \n amostragem e diferenças entre estudos]']
-      f [pos = '2,1.5!', label = 'Fixed-Effects Model  \n [Variação ocorre por erro de \n  amostragem e por características \n conhecidas dos estudos]']
-      g [pos = '6,1.5!', label = 'Mixed-Effects Model \n [Variação ocorre por erro de \n  amostragem, diferenças entre estudos e \n suas características conhecidas]']
-      h [pos = '3.5,0!', label = 'Hierárquico \n [Grupos Aninhados]']
-      i [pos = '6,0!', label = 'Fatorial \n [Fatores e Interações]']
-      j [pos = '8.5,0!', label = 'Regressão \n [Variáveis Contínuas]']
+      d [pos = '-6,1.5!', label = 'Fixed-Effects Model \n [Variação ocorre por heterogeneidade \n dentro dos estudos]']
+      e [pos = '-2,1.5!', label = 'Random-Effects Model \n [Variação ocorre por heterogeneidade \n dentro dos estudos e entre estudos]']
+      f [pos = '6,1.5!', label = 'Fixed-Effects Model  \n [Variação ocorre por heterogeneidade \n dentro dos estudos e por características \n conhecidas dos estudos]']
+      g [pos = '2,1.5!', label = 'Mixed-Effects Model \n [Variação ocorre por heterogeneidade \n dentro dos estudos, entre estudos e \n suas características conhecidas]']
+      h [pos = '-1,0!', label = 'Hierárquico \n [Grupos Aninhados]']
+      i [pos = '2,0!', label = 'Fatorial \n [Fatores e Interações]']
+      j [pos = '5,0!', label = 'Regressão \n [Variáveis Contínuas]']
 
       a->b
       a->c
@@ -210,6 +230,10 @@ digraph {
 ```
 
 ## Resumindo
+
+* Existem diversos tipos de modelos que podem ser usados em uma meta-análise, cada um com um tipo de característica e uso próprio;  
+* Não existe o melhor modelo para a sua meta-análise, mas sim o modelo que descreve melhor seus objetivos e perguntas;  
+* Independente do modelo que você use, é boa prática ponderar cada observação/estudo pelo inverso de sua variância.  
 
 ## Literatura Recomendada
 
