@@ -386,6 +386,12 @@ knitr::kable(data.frame(variavel = c("Allocation.Alternate:Latitude", "Allocatio
              digits = 3, format = "pandoc", align = "c", row.names = FALSE)
 ```
 
+## metafor
+
+<p align="center">
+<img src="figs/metafor.png" height="500px"></img>
+</p>
+
 ## Resumindo
 
 * Independente do tipo de modelo que você escolher para trabalhar, é essencial que você garanta que o modelo cumpre com o que ele promete.  
