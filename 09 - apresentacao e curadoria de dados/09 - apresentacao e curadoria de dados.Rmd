@@ -1,0 +1,33 @@
+---
+title:    "Apresentação e Curadoria de Dados"
+subtitle: "Revisão Sistemática e Meta-Análise"
+author:   "Marcelo Weber & Nicholas Marino"
+date:     "github.com/nacmarino/maR"
+output: 
+  ioslides_presentation:
+    smaller: true
+    wide: true
+---
+
+## Recapitulando
+
+## Resumindo
+
+## Literatura Recomendada
+
+1. Baker & Penny, 2016, Nature, Is there a reprodubility crisis
+
+2. Borer et al, 2009, Bull Ecol Soc Am, Some simple guidelines for effective data management
+
+3. Elison, 2010, Ecology, Repeatability and transparency in ecological research
+
+4. Hampton et al, 2013, Front Ecol Evol, Big data and the future of ecology
+
+5. Parker et al, 2016, Ecol Lett, Promoting transparency in evolutionary biology and ecology
+
+6. Zimmerman, 2008, Sci Tech Human Val, New knowledge from old data - the role of standards in the sharing and reuse of ecological data
+
+7. Rothstein et al, 2013, Quality standards for research syntheses, In: Handbook of meta-analysis in ecology and evolution (Capítulo 20)
+
+8. Lortie et al, 2013, Graphical presentation of results, In: Handbook of meta-analysis in ecology and evolution (Capítulo 21)
+
