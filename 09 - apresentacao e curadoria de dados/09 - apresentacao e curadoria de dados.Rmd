@@ -1,5 +1,5 @@
 ---
-title:    "Apresentação e Curadoria de Dados"
+title:    "Boas Práticas"
 subtitle: "Revisão Sistemática e Meta-Análise"
 author:   "Marcelo Weber & Nicholas Marino"
 date:     "github.com/nacmarino/maR"
@@ -86,8 +86,8 @@ Ainda do Feynman: "The first principle is that you must not fool yourself – an
 ## Transparência: Seleção de Estudos
 
 * Quais os critérios para a seleção e inclusão dos estudos? Eles estão bem definidos?
-* Os métodos usados para a seleção e inclusão dos estudos são justificáveis e replicáveis?
-* Qual a base de dados utilizada para a busca? Ela é adequada? Quantos _hits_ ela retornou?
+* Os critérios usados para a seleção e inclusão dos estudos são justificáveis e replicáveis?
+* Qual a base de dados utilizada para a busca? Ela é adequada? Quantos casos ela retornou?
 * Como você lidou com os artigos selecionados (duplicatas, múltiplos estudos do mesmo experimento,...)?
 
 ## Transparência: Seleção de Estudos
@@ -102,21 +102,49 @@ Ainda do Feynman: "The first principle is that you must not fool yourself – an
 
 ## Transparência: Extração de Dados
 
-* Principal contribuição de um cientista - agora e após a sua vida;  
-* Maior parte das revistas na área de ecologia e evolução estão requisitando o arquivamento dos dados utilizados em um trabalho publicado;  
-* Algumas agências de fomento fora do Brasil só aceitam financiar um projeto de pesquisa cajo haja um plano de longo prazo para o arquivamento dos dados;  
-* Existe uma linguagem própria para o arquivamento de dados (_ver mais na disciplina de Introdução à Linguagem R_);
-* O re-uso de dados tem algumas regras a serem seguida:
+* Maior parte das revistas na área de ecologia e evolução e algumas agências de fomento fora do Brasil estão requisitando o arquivamento dos dados utilizados/produzidos;  
+* O re-uso de dados tem algumas regras a serem seguidas:
     + Dá crédito à quem merece o crédito (seja pelo bom ou mau dado gerado);  
     + Evita que um dado seja 'tomado' sem autorização (todo dado tem um DOI [ou deveria ter]);  
     + Te permite verificar de forma direta o que aqueles números/conjunto de informações conta.
+* Alguns conjuntos de dados podem ter datas de embargo;  
 * Não deveria ser um problema, mas existem alguns limites impostos por Copyright.  
+
+## Transparência: Extração de Dados
+
+* Como lidar:
+    + Definição do controle e tratamento;  
+    + Medidas da variável resposta não-independentes (i.e., correlacionadas);  
+    + Observações não-independentes: medidas repetidas ao longo do tempo, filogenia, mesmo experimento reportado em múltiplos estudos,...;  
+    + Múltiplos níveis de um tratamento;  
+    + Ausência de dados quantitativos (usar método de imputação?);
+    + Método para extração de dados de figuras.  
+* Qual a característica de cada dado extraído?
+* Como você manipulou os dados (observações excluídas, agrupamento de níveis das variáveis,...)?
+* __Dica:__ um diagrama também pode cair bem aqui.  
 
 ## Transparência: Análise de Dados
 
-## Transparência: Interpretação dos Resultados
+* Qual a métrica de effect size escolhida? Por que esta métrica de effect size é útil neste caso?
+* O tipo de modelo utilizado condiz com o objetivo da meta-análise?
+* Os estudos foram ponderados pelo seu peso?
+* Você tentou lidar com a não-independência das observações no modelo? Como?
+* Como você avaliou a heterogeneidade no modelo?
+* Você tentou explicar a heterogeneidade no modelo? Como?
+* Você considerou confounding entre moderadores? Usou análises em sub-grupos?
+* __Dica:__ um diagrama também pode cair bem aqui.  
 
-## Transparência: Conclusões
+## Transparência: Apresentação dos Resultados
+
+* A estimativa do effect size é apresentada junto de seu intervalo de confiança?  
+* Você apresentou as estimativas de heterogeneidade entre e dentro dos estudos inclúidos na meta-análise?
+* Você tentou identificar outliers ou observações que possam estar tendenciando os resultados?
+* Os gráficos utilizados para apresentar os resultados são claros?
+* A importância dos moderadores são apresentados no texto ou na forma de figura de forma intuitiva?
+* Você tentou avaliar outras fontes de viés nos seus resultados?
+    + Funnel Plots, trim-and-fill plots, testes de regressão dos outcomes, histogramas, testes de normalidade,...
+
+## Transparência: Discussão e Conclusões
 
 * Quando usamos uma citação, estamos parafraseando o que de fato o outro pesquisador disse?
 * Estudos diferem em qualidade naquilo que mostram:
@@ -131,8 +159,32 @@ Ainda do Feynman: "The first principle is that you must not fool yourself – an
     + O que você lê;  
     + O que os outros dizem.  
 
+## Transparência: Discussão e Conclusões
+
+* Qual a interpretação dos resultados à luz de sua significância biológica ou prática?
+* Qual a limitação de generalização dos resultados encontrados?
+    + Casos contemplados e não contemplados;
+    + Originários do tipo de modelo escolhido para a análise de dados.
+* O quanto da heterogeneidade encontrada vem de diferenças entre estudos e o quanto vem de características de cada estudo?
+* Você identificou áreas pouco representadas na evidência existente? Existem necessidade de mais estudos em determinado sentido?
+* Como o seu estudo gera novas hipóteses à serem testadas?
+
+## E depois?
+
+* Os dados que você acumular para uma Revisão Sistemática ou Meta-Análise comporão uma base de dados robusta sobre um determinado tema;
+* Se for do seu interesse, mantenha a base de dados atualizada mesmo após a publicação dela: novas perguntas podem acabar aparecendo e/ou perguntas não respondidas agora podem ser respondidas no futuro;
+* Você será requisitado para arquivar esta base de dados uma vez que eles sejam publicados: todas as regras de _data sharing_ valem aqui;  
+* Esteja preparado para compartilhar esta base de dados com outros pesquisadores: deixe o bebê crescer e ver o mundo.  
+
 ## Resumindo
 
+* Revisões Sistemáticas e Meta-Análises são duas ferramentas que podem contribuir com o avanço da ecologia, fornecendo informações baseadas na evidência empírica acumulada e não em exemplos de livro-texto.
+* A transparência é fundamental em todo o processo de revisão sistemática/meta-análise: documentação e justificativa de cada etapa. 
+* Não se deixe enganar pela sua excitação com os resultados - faça o máximo possível para garantir a veracidade do que você quer mostrar.
+* Seja sincero com os resultados e conheça os limites do que pode ser extraído deles.  
+* Use o conhecimento que você adquiriu ao realizar uma revisão sistemática/meta-análise para aprimorar a reproducibilidade e transparência de seu próprio trabalho no futuro: alguém pode vir a usar ele um dia.  
+* Em uma casca de noz: __prepare o seu trabalho pensando nos outros, e não em você__.
+  
 ## Literatura Recomendada
 
 1. Baker & Penny, 2016, Nature, Is there a reprodubility crisis
