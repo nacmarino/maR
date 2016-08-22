@@ -26,20 +26,49 @@ output:
 * Você é capaz de reproduzir o achado de um trabalho que foi publicado - da produção do dado à sua análise?
 
 <p align="center">
-<img src="figs/reproducibility_crisis.png" height="450px"></img>
+<img src="figs/reproducibility_crisis.png" height="425px"></img>
 </p>
 
+<font size="2">
+Fonte: Baker & Penny, 2016, Nature, Is there a reprodubility crisis
+</font>
+
 ## A crise de reproducibilidade
+
+* Não é tanto um problema do desenho do estudo, mas sim __o que você tira dele__ e __como__.
 
 <p align="center">
 <img src="figs/reproducibility_reasons.png" height="450px"></img>
 </p>
 
-## Os maiores desafios em uma RS/MA
-
-## Mudança de Perspectiva
+<font size="2">
+Fonte: Baker & Penny, 2016, Nature, Is there a reprodubility crisis
+</font>
 
 ## Regra de Ouro (que ninguém comenta)
+
+* __Integridade Científica__ (Richard P. Feynman, Cargo Cult Science): tentar fornecer todos os detalhes e informações para ajudar as outras pessoas à julgar o valor da sua contribuição, e não só a informação que o conduziu ao julgamento em uma direção ou outra.  
+    + Detalhes que podem introduzir dúvida na sua contribuição: evidência contra e a favor da sua hipótese;  
+    + Fatos que podem tornar sua contribuição inválida: outras causas que podem explicar seus resultados, artefatos que podem existir no seu trabalho;  
+    + Qual a evidência sustenta os fatos apresentados pelo seu trabalho: as suas análises estão fazendo direito o que você acha que elas estão fazendo?
+    + As implicações do seu trabalho estão enraizadas nos fatos que ele demonstra ou você está tirando coelho da cartola/usando fogos de artifício/fazendo maquiagem?
+    + Qual o limite da especulação?
+* A ideia é assumir que você está errado, tentar enumerar razões para isso, e buscar invalidar todas elas.    
+  
+<font size="2">
+Ainda do Feynman: "The first principle is that you must not fool yourself – and you are the easiest person to fool".
+</font>
+
+## Os maiores desafios em uma RS/MA
+
+>- __Falta de clareza__: estudos apresentam seu desenho de forma nebulosa;  
+>- __Machismo estatístico às avessas__: Análises estatísticas não são conduzidas de forma convencional;  
+>- __É só display__: Sumários estatísticos dos dados não são apresentados, apenas resultados estatísticos;  
+>- __Apresentação seletiva de resultados__: dados são apresentados, mas não seguem o desenho amostral;  
+>- __Bomba de fumaça__: reporta 10^_n_^ resultados, que tem pouco haver com a hipótese do trabalho;  
+>- __Mágico de Oz__: conclusões têm pouco haver (ou nada haver) com os resultados apresentados.  
+
+## Mudança de Perspectiva
 
 ## Re-uso dos dados
 
@@ -74,4 +103,6 @@ output:
 7. Rothstein et al, 2013, Quality standards for research syntheses, In: Handbook of meta-analysis in ecology and evolution (Capítulo 20)
 
 8. Lortie et al, 2013, Graphical presentation of results, In: Handbook of meta-analysis in ecology and evolution (Capítulo 21)
+
+9. Richard P. Feynman, Cargo Cult Science: http://calteches.library.caltech.edu/51/2/CargoCult.htm
 
