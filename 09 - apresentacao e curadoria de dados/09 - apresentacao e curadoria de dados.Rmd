@@ -11,7 +11,29 @@ output:
 
 ## _Big data_: o futuro da ecologia
 
+* Os dados são centrais em qualquer tipo de pesquisa que seja realizada;
+* No cenário atual, existe grande facilidade para armazenagem e acesso à qualquer tipo de dado;
+* Integração da evidência disponível é essencial, e será cada vez mais importante no mundo em que viveremos;
+* _Big data_: faz referência ao volume massivo de dados que não são manuseados por ferramentas usuais de análise de dados (_ver mais na disciplina de Introdução à Programação em R_), e que compõem uma oportunidade sem precedente para o avanço da ciência, teórica e aplicada;
+* Maior parte dos estudos ecológicos são difíceis de serem repetidos (escala temporal e espacial, eventos raros, acesso aos locais,...): __replicagem e reproducibilidade__?
+
+<p align="center">
+<img src="figs/bigdata.png" height="250px"></img>
+</p>
+
 ## A crise de reproducibilidade
+
+* Você é capaz de reproduzir o achado de um trabalho que foi publicado - da produção do dado à sua análise?
+
+<p align="center">
+<img src="figs/reproducibility_crisis.png" height="450px"></img>
+</p>
+
+## A crise de reproducibilidade
+
+<p align="center">
+<img src="figs/reproducibility_reasons.png" height="450px"></img>
+</p>
 
 ## Os maiores desafios em uma RS/MA
 
