@@ -14,7 +14,7 @@ output:
 * Os dados são centrais em qualquer tipo de pesquisa que seja realizada;
 * No cenário atual, existe grande facilidade para armazenagem e acesso à qualquer tipo de dado;
 * Integração da evidência disponível é essencial, e será cada vez mais importante no mundo em que viveremos;
-* _Big data_: faz referência ao volume massivo de dados que não são manuseados por ferramentas usuais de análise de dados (_ver mais na disciplina de Introdução à Programação em R_), e que compõem uma oportunidade sem precedente para o avanço da ciência, teórica e aplicada;
+* _Big data_: faz referência ao volume massivo de dados que não são manuseados por ferramentas usuais de análise de dados (_ver mais na disciplina de Introdução à Linguagem R_), e que compõem uma oportunidade sem precedente para o avanço da ciência, teórica e aplicada;
 * Maior parte dos estudos ecológicos são difíceis de serem repetidos (escala temporal e espacial, eventos raros, acesso aos locais,...): __replicagem e reproducibilidade__?
 
 <p align="center">
@@ -63,26 +63,73 @@ Ainda do Feynman: "The first principle is that you must not fool yourself – an
 
 >- __Falta de clareza__: estudos apresentam seu desenho de forma nebulosa;  
 >- __Machismo estatístico às avessas__: Análises estatísticas não são conduzidas de forma convencional;  
->- __É só display__: Sumários estatísticos dos dados não são apresentados, apenas resultados estatísticos;  
+>- __É só display__: sumários estatísticos dos dados não são apresentados, apenas resultados estatísticos;  
 >- __Apresentação seletiva de resultados__: dados são apresentados, mas não seguem o desenho amostral;  
 >- __Bomba de fumaça__: reporta 10^_n_^ resultados, que tem pouco haver com a hipótese do trabalho;  
 >- __Mágico de Oz__: conclusões têm pouco haver (ou nada haver) com os resultados apresentados.  
 
 ## Mudança de Perspectiva
 
-## Re-uso dos dados
+* "Só quem passa pelo deserto sabe o valor de uma chuva": fazer uma revisão sistemática ou meta-análise muda a sua perspectiva de apresentação de um trabalho.  
 
-## Re-uso das conclusões
+<p align="center">
+<img src="figs/perspective.jpg" height="350px"></img>
+</p>
+
+## Transparência: Escolha da Pergunta
+
+* A questão (ou problema) está bem definida?
+* Está claro por que a questão ou problema apresentados são importantes?
+* Está claro como estas questões ou problemas são abordados nos estudos?
+* Existe um número relevante de casos que possam ser usados para responder o ponto levantado?
 
 ## Transparência: Seleção de Estudos
 
+* Quais os critérios para a seleção e inclusão dos estudos? Eles estão bem definidos?
+* Os métodos usados para a seleção e inclusão dos estudos são justificáveis e replicáveis?
+* Qual a base de dados utilizada para a busca? Ela é adequada? Quantos _hits_ ela retornou?
+* Como você lidou com os artigos selecionados (duplicatas, múltiplos estudos do mesmo experimento,...)?
+
+## Transparência: Seleção de Estudos
+
+* PRISMA Statement (Preferred Reporting Items for Systematic Reviews and Meta-Analyses): 
+    + http://prisma-statement.org/Default.aspx
+* Fornece diretrizes para apresentação de revisões sitemáticos e meta-análises de forma transparente.  
+
+<p align="center">
+<img src="figs/prisma.png" height="425px"></img>
+</p>
+
 ## Transparência: Extração de Dados
+
+* Principal contribuição de um cientista - agora e após a sua vida;  
+* Maior parte das revistas na área de ecologia e evolução estão requisitando o arquivamento dos dados utilizados em um trabalho publicado;  
+* Algumas agências de fomento fora do Brasil só aceitam financiar um projeto de pesquisa cajo haja um plano de longo prazo para o arquivamento dos dados;  
+* Existe uma linguagem própria para o arquivamento de dados (_ver mais na disciplina de Introdução à Linguagem R_);
+* O re-uso de dados tem algumas regras a serem seguida:
+    + Dá crédito à quem merece o crédito (seja pelo bom ou mau dado gerado);  
+    + Evita que um dado seja 'tomado' sem autorização (todo dado tem um DOI [ou deveria ter]);  
+    + Te permite verificar de forma direta o que aqueles números/conjunto de informações conta.
+* Não deveria ser um problema, mas existem alguns limites impostos por Copyright.  
 
 ## Transparência: Análise de Dados
 
 ## Transparência: Interpretação dos Resultados
 
 ## Transparência: Conclusões
+
+* Quando usamos uma citação, estamos parafraseando o que de fato o outro pesquisador disse?
+* Estudos diferem em qualidade naquilo que mostram:
+    + Em uma meta-análise isto é contemplado;
+    + Mas e em uma revisão sistemática?
+* Propagação de erros por conta de citações erradas pode acontecer sim:
+    + Erro no uso de conceitos;  
+    + Alteração no significado de conceitos ao longo do tempo;  
+    + Resultados mal interpretados;...
+* Toda a informação publicada passa a contribuir para uma 'verdade' maior, portanto tenha julgamento muito crítico com:
+    + O que você produz;  
+    + O que você lê;  
+    + O que os outros dizem.  
 
 ## Resumindo
 
@@ -105,4 +152,3 @@ Ainda do Feynman: "The first principle is that you must not fool yourself – an
 8. Lortie et al, 2013, Graphical presentation of results, In: Handbook of meta-analysis in ecology and evolution (Capítulo 21)
 
 9. Richard P. Feynman, Cargo Cult Science: http://calteches.library.caltech.edu/51/2/CargoCult.htm
-
