@@ -9,7 +9,29 @@ output:
     wide: true
 ---
 
-## Recapitulando
+## _Big data_: o futuro da ecologia
+
+## A crise de reproducibilidade
+
+## Os maiores desafios em uma RS/MA
+
+## Mudança de Perspectiva
+
+## Regra de Ouro (que ninguém comenta)
+
+## Re-uso dos dados
+
+## Re-uso das conclusões
+
+## Transparência: Seleção de Estudos
+
+## Transparência: Extração de Dados
+
+## Transparência: Análise de Dados
+
+## Transparência: Interpretação dos Resultados
+
+## Transparência: Conclusões
 
 ## Resumindo
 
