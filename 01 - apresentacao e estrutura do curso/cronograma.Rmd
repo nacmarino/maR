@@ -1,7 +1,8 @@
 ---
-title: "Cronograma do Curso"
-author: "Nicholas Marino"
-output: html_document
+title:  "Cronograma do Curso"
+author: "Marcelo M. Weber & Nicholas A. C. Marino"
+date:   "github.com/nacmarino/maR"
+output:  html_document
 ---
 
 ## Para os instrutores  
@@ -18,7 +19,7 @@ output: html_document
   
 6. Variáveis Moderadoras e Diagnóstico de Modelos: Inclusão de variáveis moderadoras, análises por subgrupos e apresentação de ferramentas de diagnóstico dos modelos (Nicholas)  
   
-7. Independência de Observações e Publication Bias: Viés de publicação, método filogenético e tamanhos de efeito não-independentes (Marcelo)  
+7. Independência de Observações e Publication Bias: Viés de publicação e observções não-independentes (Marcelo)  
   
 8. Apresentação e Curadoria da Meta-Análise: Boas práticas na apresentação da MA e na curadoria dos dados (Nicholas)
   
