@@ -1,7 +1,7 @@
 ---
 title:    "Modelos para Meta-Análise"
 subtitle: "Revisão Sistemática e Meta-Análise"
-author:   "Marcelo Weber & Nicholas Marino"
+author:   "Marcelo M. Weber & Nicholas A. C. Marino"
 date:     "github.com/nacmarino/maR"
 output: 
   ioslides_presentation:
@@ -180,19 +180,13 @@ dat3
 
 ## Observações
 
-* No R, o `metafor` encara que cada linha pertence à um estudo distinto - o que muitas vezes não é o caso (um estudo com múltiplas observações). Se você quiser especificar que a _hierarquia_ das observações está no nível do estudo (e não do da observação) você pode usar a função `rma.mv` e especificar o argumento `random = ~ 1|estudo`:
+* Uma alternativa ao uso do inverso da variância como o peso de cada observação é usar o _tamanho amostral_ de cada estudo: estudos maiores têm mais peso do que os estudos menores, pois tendem a ser mais precisos.  
 
-```{r eval=FALSE}
-rma.mv(yi = yi, V = vi, mods = ~alloc, random = ~1|trial, data = dat)
-```
+* Recomenda-se que os intervalos de confiança para a estimativa do efeito também sejam calculados através do método do _bootstrap_ paramétrico ou não-paramétrico (ver pacote `boot`).
+    + Paramétrico: 'cria' populações de effect size baseado na estimativa do efeito e da variância pelo modelo;
+    + Não-paramétrico: 'cria' populações de effect size baseado nas observações existentes no conjunto de dados utilizado na meta-análise.
 
-* Você também pode adicionar uma estrutura de correlação às duas observações utilizando o argumento `random` na função `rma.mv`; neste caso, o nível que define a estrutura da correlação vem no lado esquerdo do argumento:
-
-```{r eval=FALSE}
-rma.mv(yi = yi, V = vi, mods = ~alloc, random = ~author|trial, data = dat)
-```
-
-* Você também pode rodar os modelos meta-analíticos usando as funções `lme` (pacote `nlme`) e `lmer` (pacote `lme4`), utilizando o argumento `weights` para determinar o peso de cada observação/estudo.
+* Você também pode usar o _bootstrap_ para calcular intervalos de confiança para cada nível de moderadores categóricos, enquanto que para moderadores contínuos utilizar o _bootstrap_ pode ser um pouco mais complicado.
 
 ## Só para ficar didático
 
