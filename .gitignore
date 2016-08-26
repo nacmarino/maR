@@ -48,3 +48,6 @@ Temporary Items
 *.pper
 .Rproj.user/A9776BD3/saved_source_markers
 .Rproj.user
+
+# Types of files
+.pptx
