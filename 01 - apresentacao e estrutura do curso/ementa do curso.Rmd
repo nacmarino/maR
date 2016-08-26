@@ -20,7 +20,7 @@ __Objetivo da Disciplina:__ esta disciplina tem como objetivo principal a aprese
   
 __Metodologia:__ serão ministradas aulas presenciais, onde os tópicos abordados serão apresentados e discutidos com os alunos. Para algumas aulas, os alunos deverão utilizar seus computadores para realizar cálculos e análises junto ao programa estatístico.  
   
-__Avaliação:__ será baseada na presença e participação do aluno, além da apresentação do projeto de síntese que será conduzido pelo mesmo.  
+__Avaliação:__ será baseada na presença e participação do aluno (peso 6), além da apresentação oral (peso 2) e escrita (peso 2) do projeto de síntese que será conduzido pelo mesmo.  
   
 __Número de dias de aula:__ 6 dias, com 7 horas de aula por dia.  
   
