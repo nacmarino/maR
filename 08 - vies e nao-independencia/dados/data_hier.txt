@@ -1,0 +1,14 @@
+Study	N	correlation	group	author
+Study_1	50	-0.409	A	Diniz
+Study_2	38	-0.236	A	Diniz
+Study_3	12	-0.346	A	Diniz
+Study_4	14	-0.291	A	Diniz
+Study_5	10	-0.431	A	Diniz
+Study_6	89	-0.316	A	Diniz
+Study_7	7	0.084	B	Araujo
+Study_8	10	0.119	B	Araujo
+Study_9	5	0.637	B	Araujo
+Study_10	24	-0.411	A	Diniz
+Study_11	6	0.536	B	Araujo
+Study_12	9	-0.6	B	Diniz
+Study_13	44	-0.513	A	Diniz
