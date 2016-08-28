@@ -13,8 +13,7 @@ Os arquivos neste repositório estão sob licença de uso CC BY-NC. Algumas info
     + Nos dar o crédito pelo material que for usado (se for usado por você no futuro).  
 * Você não pode:
     + Usar este material para fins comerciais.  
-    
-      
+  
 ### Ementa do Curso  
   
 __Descrição:__ a análise crítica da evidência disponível é fundamental para a inferência científica. Uma enorme quantidade de estudos é produzida todo ano, alguns apresentando evidência a favor de uma determinada hipótese e outros contra. Como então julgar o valor dessas evidências? Como determinar a resposta dominante de um determinado processo? Como sintetizar dados vindos de fontes diferentes? Esta disciplina visa fornecer as ferramentas necessárias para responder algumas destas perguntas.  
@@ -51,3 +50,14 @@ __Número de dias de aula:__ 6 dias, com 7 horas de aula por dia.
 11. Rosenberg, 2005, Evolution, The file-drawer problem revisited - a general weighted method for calculating fail-safe numbers in meta-analysis
 12. Borenstein, M.; Hedges, L.V.; Higgins, J.P.T. & Rothstein, H.R. 2009. Introduction to meta-analysis. John Wiley & Sons, Ltd
 13. Chen, D.-G. & Peace, K.E. 2013. Applied meta-analysis with R
+
+### Contato
+
+* __Marcelo M. Weber__
+    + Pós-doutorando do Programa de Pós-Graduação em Ecologia/UFRJ
+    + mweber.marcelo at gmail.com
+
+* __Nicholas A. C. Marino__
+    + Pós-doutorando do Programa de Pós-Graduação em Ecologia/UFRJ
+    + nac.marino at gmail.com
+    + www.nacmarino.wix.com/home
