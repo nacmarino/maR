@@ -5,7 +5,6 @@ author:   "Marcelo M. Weber & Nicholas A. C. Marino"
 date:     "github.com/nacmarino/maR"
 output: 
   ioslides_presentation:
-    smaller: true
     wide: true
 ---
 
@@ -27,28 +26,32 @@ output:
     + Trabalha com aceite ou rejeição de uma hipótese, ao invés de sua plausibilidade;
     + Sofre forte influência do tamanho amostral e de dados aberrantes.
 
+## Testes de Significância
+
 <p align="center">
-<img src="figs/p_values.png" height="300px"></img>
+<img src="figs/p_values.png" height="500px"></img>
 </p>
 
-## Tamanho do Efeito
+## Tamanho do Efeito _vs_ Significância do Efeito: perspectiva da relevância de um resultado
 
->- Tamanho do Efeito _vs_ Significância do Efeito: perspectiva da relevância de um resultado.
->- Você já usa métricas de tamanho do efeito sem saber:
+* Você já usa métricas de tamanho do efeito sem saber:
     + Quando você estima o efeito de uma variável em uma regressão;
     + Quando você compara os resultados de diferentes tratamentos;
-    + Quando você avalia o efeito de diferentes níveis do mesmo tratamento.
->- Em uma meta-análise, o tamanho do efeito é um parâmetro estatístico que pode ser usado para comparar, em uma mesma escala, os resultados de diferentes estudos no qual um efeito de interesse tenha sido medido.
+    + Quando você avalia o efeito de diferentes níveis do mesmo tratamento.  
+    
+* Em uma meta-análise, o tamanho do efeito é um parâmetro estatístico que pode ser usado para comparar, em uma mesma escala, os resultados de diferentes estudos no qual um efeito de interesse tenha sido medido.
     + Mesma resposta, medida de formas diferentes;
     + Mesma medida, expressa em unidades diferentes.
 
 ## Intervalos de Confiança
 
->- Interpretado como um envelope dentro do qual um parâmetro de interesse é muito plausível de estar.  
+* Interpretado como um envelope dentro do qual um parâmetro de interesse é muito plausível de estar.  
     + Se uma população for amostrada _n_ vezes, o parâmetro de interesse vai estar contido no interval de confiança de _x_% em _z_% das amostragens.  
     + Combina uma estimativa de uma característica da população em um ponto, com a variabilidade associada à esta estimativa.  
->- Dificilmente (ou nunca) um teste estatístico será significativo quando o cálculo de um intervalo de confiança sugerir que o valor do parâmetro de interesse pode ser zero.  
->- Deveria ser o foco principal ao fazermos qualquer inferência, mas não é:
+  
+* Um teste estatístico não será significativo quando o cálculo de um intervalo de confiança sugerir que o valor do parâmetro de interesse pode ser zero.  
+  
+* Deveria ser o foco principal ao fazermos qualquer inferência, mas não é:
     + Efeito significativo, mas impreciso: a intenção de votos é de 42 pontos, com um desvio de 41 pontos para mais ou para menos.  
     + Efeito significativo, mas muito preciso: a inteção de votos é de 42 pontos, com um desvio de 2 pontos para mais ou para menos.  
 
@@ -58,46 +61,67 @@ output:
 * Portanto, o valor de cada estudo é dado pelo parâmetro estimado e pela incerteza ao redor dele.
 
 <p align="center">
-<img src="figs/image.png" height="400px"></img>
+<img src="figs/image.png" height="350px"></img>
 </p>
 
 ## Pensamento Meta-analítico
 
-* Em uma meta-análise precisamos estimar dois parâmetros:
-    + A métrica de effect size _per se_, que é a medida do tamanho do efeito de intesse.  
-    + Uma métrica que descreva a incerteza sobre a estimativa do effect size - a _variância_.  
-* Estes dois parâmetros são necessários para rodarmos qualquer modelo de meta-análise:
-    + Métrica de effect size é a variável resposta (como já esperado);
-    + O inverso da variância é usado para ponderar cada observação: observações mais precisas têm mais peso do que as observações com baixa precisão.  
+* Em uma meta-análise precisamos estimar dois parâmetros:  
+    + A métrica de __effect size__ _per se_, que é a medida do tamanho do efeito de intesse.  
+    + Uma métrica que descreva a incerteza sobre a estimativa do effect size - a __variância__.  
+* Estes dois parâmetros são necessários para rodarmos qualquer modelo de meta-análise:  
+    + Métrica de effect size é a variável resposta (como já esperado);  
+    + O __inverso da variância__ é uma medida de __precisão__ usado para ponderar cada observação;  
+        + Observações mais precisas têm mais peso do que as observações com baixa precisão.  
 * A falta de algum dos dados pode limitar a escolha da métrica de effect size e também o uso adequado dos modelos.  
 
 ## Tipos de Medida
 
->- Medidas de tamanho de efeito podem ser postas em dois grupos:
-    + __Binárias__: tipo de resposta _x_ e de resposta _y_, resposta _z_ em uma população _k_,...
-    + __Contínuas__: valor médio de _a_, força da relação entre _b_ e _c_,...
+Medidas de tamanho de efeito podem ser postas em dois grupos:  
+  
+* __Binárias__
+    + Qual a proporção de vezes em que a resposta é _x_ ou _y_: qual a mais provável;
+    + Em uma população _k_, observamos a resposta _z_ tantas vezes;
+    + ...
+  
+* __Contínuas__
+    + Valor médio de _a_;
+    + Força da relação entre _b_ e _c_;
+    + ...  
     
->- Medidas de efeito também podem ser usadas com diferentes objetivos:
-    + __Determinar a magnitude e/ou direção de um fenômeno__: coeficientes de correlação, slopes, valores de média, predominância de um efeito...;
-    + __Comparar grupos__: comparação entre médias.
+## Tipos de Medida
 
->- Em ecologia, a maior parte das meta-análises envolve comparações entre grupos, mas a determinação da magnitude/direção de um fenômeno ecológico também é bastante marcante.
+Medidas de efeito também podem ser usadas com diferentes objetivos:  
+  
+* __Determinar a magnitude e/ou direção de um fenômeno__
+    + Coeficientes de correlação;  
+    + Slopes;  
+    + Valores de média;  
+    + Predominância de um efeito;  
+    + ...  
+* __Comparar grupos__  
+    + comparação entre médias.  
 
->- Para o cálculo de qualquer métrica de effect size e sua variância precisamos:  
+## Tipos de Medida
+
+* Em ecologia, a maior parte das meta-análises envolve comparações entre grupos, mas a determinação da magnitude/direção de um fenômeno ecológico também é bastante marcante.
+
+* Para o cálculo de qualquer métrica de effect size e sua variância precisamos:  
     1. De uma estimativa de ponto (médias, correlações, slopes);  
     2. De uma estimativa de erro (intervalo de confiança, erro padrão, desvio padrão, variãncia);  
     3. De uma estimativa de tamanho da amostra.  
 
->- No R, o pacote _metafor_ oferece a função `escalc` para o cálculo de diversas métricas de effect size.  
+* No R, o pacote _metafor_ oferece a função `escalc` para o cálculo de diversas métricas de effect size.  
+    + Você também pode programar suas próprias funções no Excel, no R ou em qualquer outra ferramenta de programação.  
 
 ## Hedge's _d_
 
 * É um tipo muito comum de métrica em meta-análises na ecologia.    
 * Principal objetivo é comparar grupos através de suas médias (medida contínua).  
-* Também conhecido como _Standardized Mean Difference_.  
+* Também conhecido como `Standardized Mean Difference`.  
 * Estimativa da diferença entre a média de dois grupos (normalmente um tratamento e um controle), padronizado pelo desvio padrão agrupado dos dois grupos e tamanho amostral.  
-* Limitação: para o cálculo do valor de _d_ você precisa de estimativas de média, erro e tamanho da amostra para todos os grupos, caso contrário você não consegue calcular esta métrica de effect size.  
-* Vantagem: pode ser usado com valores de média negativas.  
+* `Limitação`: para o cálculo do valor de _d_ você precisa de estimativas de média, erro e tamanho da amostra para todos os grupos, caso contrário você não consegue calcular esta métrica de effect size.  
+* `Vantagem`: pode ser usado com valores de média negativas.  
 
 ## Hedge's _d_
 
@@ -137,10 +161,10 @@ dat <- get(data(dat.normand1999))
 dat
 ```
 
-## No R
+## No R {.smaller}
 
 * Vamos calcular o valor de _d_ para cada estudo neste conjunto de dados com o `escalc`.  
-* `"SMD"` especifica o calculo de _d_: **S**tandardized **M**ean **D**ifference.  
+* `SMD` especifica o calculo de _d_: **S**tandardized **M**ean **D**ifference.  
 * Incorpora a correção para amostras pequenas.  
 
 ```{r warning=FALSE, message=FALSE}
@@ -153,8 +177,8 @@ escalc(measure="SMD", m1i=m1i, sd1i=sd1i, n1i=n1i, m2i=m2i, sd2i=sd2i, n2i=n2i, 
 * Estimativa da diferença pela razão entre a média de um tratamento e o controle.  
 * O logarítimo natural é aplicado para normalizar a razão.  
 * Pode assumir qualquer valor entre -∞ e +∞.  
-* Limitação: não pode ser usado com valores de média negativas.  
-* Vantagem: para o cálculo do valor de LRR você precisa somente de estimativas de média.  
+* `Limitação`: não pode ser usado com valores de média negativas.  
+* `Vantagem`: para o cálculo do valor de LRR você precisa somente de estimativas de média.  
 
 <p align="center">
 <img src="figs/lrr.png" height="70px"></img>
@@ -170,8 +194,11 @@ escalc(measure="SMD", m1i=m1i, sd1i=sd1i, n1i=n1i, m2i=m2i, sd2i=sd2i, n2i=n2i, 
 * Sugere a utilização de dois outros estimadores para o LRR e sua variância:   
     + LRR^$\Delta$^ (baseado no Método Delta);  
     + LRR^$\Sigma$^ (baseado na regra de Expecativa de Linearidade).  
-* LRR^$\Delta$^ fornece estimativas um pouco melhores do que LRR^$\Sigma$^, mas ambos são pouco eficientes quando valores da média beiram o zero.  
     
+## Log Response Ratio
+
+* LRR^$\Delta$^ fornece estimativas um pouco melhores do que LRR^$\Sigma$^, mas ambos são pouco eficientes quando valores da média beiram o zero.  
+  
 <p align="center">
 <img src="figs/lrr_delta.png" height="70px"></img>
 <img src="figs/variance_lrr_delta.png" height="70px"></img>
@@ -181,11 +208,11 @@ escalc(measure="SMD", m1i=m1i, sd1i=sd1i, n1i=n1i, m2i=m2i, sd2i=sd2i, n2i=n2i, 
 <img src="figs/variance_lrr_sigma.png" height="100px"></img>
 </p>
 
-## No R
+## No R {.smaller}
 
 * Modificações de Lajeunesse (2015) não foram implementadas (e acho que não serão).  
 * Vamos calcular o valor de LRR para cada estudo neste conjunto de dados com o `escalc`.  
-* `"ROM"` especifica o calculo do LRR: **R**atio **o**f **M**eans.  
+* `ROM` especifica o calculo do LRR: **R**atio **o**f **M**eans.  
 * O resultado pode ser expresso em %, caso você tire o exponencial do LRR.
 
 ```{r warning=FALSE, message=FALSE}
@@ -212,10 +239,10 @@ escalc(measure="ROM", m1i=m1i, sd1i=sd1i, n1i=n1i, m2i=m2i, sd2i=sd2i, n2i=n2i, 
 <img src="figs/backtransform_correlation.png" height="80px"></img>
 </p>
 
-## No R
+## No R {.smaller}
 
 * Vamos usar outro conjunto de dados, próprio para esta finalidade: `dat.mcdaniel1994`.  
-* No `escalc`, `"COR"` especifica o calculo do effect size baseado no valor bruto da correlação, enquanto `"ZCOR"` o faz baseado no valor do coeficiente de correlção transformado.  
+* No `escalc`, `COR` especifica o calculo do effect size baseado no valor bruto da correlação, enquanto `ZCOR` o faz baseado no valor do coeficiente de correlção transformado.  
 * A estimativa da variância não é afetada, uma vez que seu calculo não depende do valor de _r_.  
 
 ```{r eval=FALSE}
@@ -233,14 +260,14 @@ escalc(measure="ZCOR", ri=ri, ni=ni, data=dat)[1:10,]
 
 * Outra medida relevante que pode ser usada como _effect size_;  
 * Mede a taxa de mudança em um variável dependente de acordo com uma variável independente;  
-* No R (ou qualquer outro programa estatístico), este valor é representado pelo `estimate` em uma análise;  
-* Muito cuidado deve ser tomado quando usar esta métrica, pois:
+* O valor do effect size é o slope em si, e o valor da variância é o valor do erro associado ao slope, elevado ao quadrado (ver Capítulo 6 do livro de Meta-análise para detalhes);  
+* Muito cuidado deve ser tomado quando usar esta métrica, pois:  
+  
     1. Ela se baseia no pressuposto de linearidade;  
     2. Pressupõem que não haja problemas com dados aberrantes;
     3. Quando em um contexto de regressão múltipla, valor do _slope_ não é o mesmo do quando quando em uma regressão simples.  
-* O valor do effect size é o slope em si, e o valor da variância é o valor do erro associado ao slope, elevado ao quadrado;  
-* Caso a variância não seja fornecida, podemos calcular ela de outras formas (ver Capítulo 6 do livro de Meta-análise para uma explicação mais detalhada).  
-    
+* No R (ou qualquer outro programa estatístico), este valor é representado pelo `estimate` em uma análise;  
+  
 ## Outras Métricas
 
 * Em essência, qualquer estimativa de um dado efeito pode ser usada para o cálculo do _effect size_;
@@ -248,7 +275,8 @@ escalc(measure="ZCOR", ri=ri, ni=ni, data=dat)[1:10,]
     + Odds Ratio: define a razão entre a chance de um evento ocorrer em um grupo _vs_ em um segundo grupo;
     + Incidence Rate Ratio: razão entre o número de eventos específicos e o número total de eventos em uma população;
     + Estimativas de Padrões: valores que descrevam algum padrão/processo ecológico (emissão de um gás, densidade de plantas em áreas alagadas de um determinado tipo,...).  
-* Para este último caso...
+
+## Um exemplo para estimativas de padrões
 
 ```{r eval=FALSE}
 dat <- dat.senn2013
@@ -261,7 +289,7 @@ dat <- dat.senn2013
 escalc(measure="MN", mi = mi, sdi=sdi, ni=ni, data=dat)[1:4,-4]
 ```
 
-## Transformando entre métricas
+## Transformando entre métricas {.smaller}
 
 * Alguns estudos podem não te fornecer os valores de média, coeficientes de correlação, slopes e estimativas de erro de forma direta.  
 * Uma das opções é realizar conversões baseadas nos dados que estão disponíveis (lista completa no Capítulo 13 do livro de Meta-Análise):
