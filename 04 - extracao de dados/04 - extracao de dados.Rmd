@@ -5,7 +5,6 @@ author:   "Marcelo M. Weber & Nicholas A. C. Marino"
 date:     "github.com/nacmarino/maR"
 output: 
   ioslides_presentation:
-    smaller: true
     wide: true
 ---
 
@@ -20,13 +19,15 @@ output:
 ## Recapitulando
 
 * Para os trabalhos que forem vistos:  
-    + Documento todos os passos e decisões;
+    + Documente todos os passos e decisões;
     + Faça uma lista de todos os trabalhos vistos, com o status e informações relevantes de cada um deles, que os levaram a ser aceitos ou rejeitados.    
 * Cada trabalho visto deve receber um número de identificação.    
 * Cada linha recebe as informações de uma única observação.  
 * Em cada coluna, apenas um tipo de dado.  
 
-```{r echo=FALSE, size="large"}
+## Recapitulando {.smaller}
+
+```{r echo=FALSE, size="small"}
 informacoes <- data.frame(id_estudo = 1:5, 
                      autor = c("Fulano et al", "Beltrano", "Primano", "Hermano et al", "Ciclano & Juvano"), 
                      ano = c(2013, 2014, 2016, 2010, 2010),
@@ -118,11 +119,11 @@ digraph {
 ## Que informações extrair?
 
 * O tipo de informação a ser extraída depende da natureza da sua pergunta:
-    + Informações básicas sobre o estudo: localidade, coordenadas, clima,...
-    + Outras informações sobre o estudo: tamanho da área amostrada, tipo de ecossistema, forma de amostragem, espécies envolvidas,...
-    + Informações sobre a manipulação de interesse: desenho aditivo ou substitutivo, níveis da manipulação, espécies adicionadas,...
-    + Dados quantitativos: médias, coeficientes de correlação, slopes, erros, tamanho amostral
-    + Outras informações relevantes (informações sobre as espécies, informações sobre background do solo,...)
+    + __Informações básicas sobre o estudo__: localidade, coordenadas, clima,...
+    + __Outras informações sobre o estudo__: tamanho da área amostrada, tipo de ecossistema, forma de amostragem, espécies envolvidas,...
+    + __Informações sobre a manipulação de interesse__: desenho aditivo ou substitutivo, níveis da manipulação, espécies adicionadas,...
+    + __Dados quantitativos__: médias, coeficientes de correlação, slopes, erros, tamanho amostral
+    + __Outras informações relevantes__ (informações sobre as espécies, informações sobre background do solo,...)
 
 ## Mas o que são informações relevantes?  
 
@@ -134,55 +135,55 @@ digraph {
 * Que outros corpos de teoria podem indicar quais informações são importantes?  
 * __Estar familiarizado com a área que você está revisando é fundamental__.  
 
-## Quais das informações extrair?  
+## Quais informações extrair?|Variáveis correlacionadas em um mesmo estudo  
 
->- Quando variáveis resposta para um mesmo estudo forem correlacionadas, qual delas você vai preferir?  
-    + Diferentes medidas de diversidade, densidade ou biomassa;
-    + Diferentes formas de medir o fluxo de um gás;
-    + Diferentes formas de inferir visitação;
-    + Diferentes forma de medida um organismo;
-    + ...
->- Quando os dados forem apresentados em diferentes tempos, qual deles você vai usar?
-    + Medidas finais: capturam todo o histórico do experimento/observação, mas também pode sofrer influência de outros fatores que não o desejado;  
-    + Medidas iniciais: capturam a resposta inicial do experimento/observação, mas podem estar sujeitos à influência da estocasticidade e não refletir a tendência à longo prazo;  
-    + Integrar todas as medidas: estimativa mais robusta, mas muito mais trabalhosa.  
+* Diferentes medidas de diversidade, densidade ou biomassa;  
+* Diferentes formas de medir um processo (e.g., emissão de um gás);  
+* Diferentes formas de inferir o comportamento (e.g., visitação de plantas);  
+* Diferentes forma de medida um organismo (e.g., plantas vs animais);  
+* ...  
+    
+## Quais informações extrair?|Dados apresentados para durações diferentes  
 
-## Quais das informações extrair?  
+* __Medidas finais__: capturam todo o histórico do experimento/observação, mas também pode sofrer influência de outros fatores que não o desejado;    
+* __Medidas iniciais__: capturam a resposta inicial do experimento/observação, mas podem estar sujeitos à influência da estocasticidade e não refletir a tendência à longo prazo;  
+* __Integrar todas as medidas__: estimativa mais robusta, mas muito mais trabalhosa.  
 
->- Se houverem múltiplos níveis de um tratamento, qual você vai usar?  
-    + Gradiente de riqueza, de área, de intensidade, de concentração, de 'idade' das unidades experimentais;  
+## Quais informações extrair?|Múltiplas observações a partir de um estudo  
 
->- Como você encara múltiplas observações a partir do mesmo estudo?  
+* Diferentes níveis de um mesmo tratamento;  
+    + Gradiente de riqueza, de área, de intensidade, de concentração, de 'idade' das unidades experimentais.  
+
+* Diferentes unidades de observação-alvo em um mesmo estudo;  
     + Espécies, indivíduos, ambientes,..., populações diferentes avaliadas no mesmo estudo;  
     + Observações dependentes por virem do mesmo estudo;  
     + Observações independentes por serem 'experimentos' diferentes.  
 
-## Quais das informações extrair?
+## Quais informações extrair?|Estudos multifatoriais
 
->- Como você encara dados do mesmo experimento/localidade apresentados em múltiplos estudos?  
-    + _Salami Science_: mesmo experimento apresentado como uma série de artigos (normalmente) de menor impacto;  
-    + _Pão Francês_: pequenos experimentos repetidos inúmeras vezes, podendo ser mais ou menos similares entre si;  
-    + _De volta para o futuro_: resultados do mesmo trabalho descrito anteriormente, mas agora com _x_ anos/meses/semanas/dias a mais de coleta.  
-
->- Se o estudo for multifatorial, como você extrai os dados do controle e tratamento?  
-    + Por exemplo, você quer saber qual o efeito da adição de nutrientes em uma variáveis resposta _x_, e um estudo manipula a concentração de nutrientes (baixa vs alta) e o disturbio (baixo vs alto) de forma fatorial.  
-    + Uma opção é usar os níveis do outro fator como uma 'realidade' pararela: para cada um dos níveis do distúrbio, você vai ter um medida da adição de nutrientes;
-    + Outra opção é selecionar um dos níveis do segundo fator e trabalhar apenas com ela, para simplificar as coisas e reduzir ruído.  
-    + Se esta for a sua pergunta, você também pode usar uma medida de effect size bifatorial (ou multifatorial, mas aqui complica a interpretação).  
+* Por exemplo, você quer saber qual o efeito da adição de nutrientes em uma variáveis resposta _x_, e um estudo manipula a concentração de nutrientes (baixa vs alta) e o disturbio (baixo vs alto) de forma fatorial.  
+* Uma opção é usar os níveis do outro fator como uma 'realidade' pararela: para cada um dos níveis do distúrbio, você vai ter um medida da adição de nutrientes;
+* Outra opção é selecionar um dos níveis do segundo fator e trabalhar apenas com ela, para simplificar as coisas e reduzir ruído.  
+* Se esta for a sua pergunta, você também pode usar uma medida de effect size bifatorial (ou multifatorial, mas aqui complica a interpretação).  
     
+## Quais informações extrair?|Outros casos
+
+Como você encara dados do mesmo experimento/localidade apresentados em múltiplos estudos?  
+  
+* _Salami Science_: mesmo experimento apresentado como uma série de artigos (normalmente) de menor impacto;  
+* _Pão Francês_: pequenos experimentos repetidos inúmeras vezes, podendo ser mais ou menos similares entre si;  
+* _De volta para o futuro_: resultados do mesmo trabalho descrito anteriormente, mas agora com _x_ anos/meses/semanas/dias a mais de coleta.  
+
 ## Como registrar cada informação?
 
 * __Regra de ouro__: uma observação por linha, um tipo de dado por coluna.  
 * Você não precisa registrar todas as informações em uma única tabela - eu, particularmente, sugiro usar uma estrutura de base de dados.  
 * Informações da inclusão do estudo:  
 
+## Como registrar cada informação? {.smaller}
+
 ```{r echo=FALSE}
 knitr::kable(informacoes, align = 'c', format = "html")
-```
-  
-*  
-* Informações extraídas dos trabalhos selecionados:  
-```{r echo=FALSE}
 estudo <- data.frame(id_estudo = 1:4, 
                      pais = c("Brasil", "Patopolis", "Sao Paulo", "Disneylandia"), 
                      especie = c("araucaria angustifolia", "theobroma cacao", "handroanthus albus", "cecropia hololeuca"),
@@ -213,10 +214,7 @@ knitr::kable(estudo, align = 'c', format = "html")
     + Intervalo de Confiança.
 3. Tamanho Amostral.  
 
-
-## Dados quantitativos
-
-* Exemplo de uma tabela de dados quantitativos extraídos.  
+## Exemplo de uma tabela de dados quantitativos
 
 ```{r echo=FALSE}
 quantitativos <- data.frame(id_estudo = 1:4, 
@@ -236,73 +234,18 @@ knitr::kable(quantitativos[,7:11], align = 'c', format = "html")
 
 ## E se faltar algum dado quantitativo?
 
->- Pode ocorrer por diversos motivos, dentre eles:
-    + Dados foram apresentados muito mal (bad reporting);
-    + Dados não foram apresentados seguindo o desenho experimental;
-    + Dados não foram apresentados.
->- O que fazer:
-    * Entrar em contato com o(s) autor(es) do trabalho: nem sempre é o desejável, tampouco é garantia de conseguir os dados.
-    * Tentar algum tipo de imputação dos dados: você usa relações existentes na base de dados para 'predizer' qual é o valor que foi perdido.
-    * Excluir observação da base de dados: não é o desejável, mas é o que precisa ser feito às vezes;  
-    * Usar uma medida de tamanho de efeito alternativa.  
->- Existe o que fazer se dados forem apresentados como Boxplot!
+__Pode ocorrer por diversos motivos, dentre eles__:  
 
-## Como tirar dados de boxplot?
+* Dados foram apresentados muito mal (bad reporting);
+* Dados não foram apresentados seguindo o desenho experimental;
+* Dados não foram apresentados.  
+    
+__O que fazer__:  
 
-* Hozo et al, 2005, BMC Medical Research Technology, Estimating the mean and variance from the median, range, and the size of a sample
-
-```{r eval=FALSE}
-# a: mínimo; m: mediana; b: máximo; n: tamanho da amostra
-box_size <- function(a,m,b,n) {
-  mn_small <- (a+2*m+b)/4
-  mn_with_n <- (a+2*m+b)/4+(a-2*m+b)/(4*n)
-  s <- sqrt((a*a+m*m+b*b+(n-3)*((a+m)^2+(m+b)^2)/8-n*mn_small*mn_small)/(n-1))
-  s_form <- ((((a-(2*m)+b)^2)/4)+((b-a)^2))/12
-  sd_form <- sqrt(s_form)
-  s_range_4 <- (b-a)/4
-  s_range_6 <- (b-a)/6
-  sample_size <- n
-  median_data <- m
-  calculated <- c(mn_small, mn_with_n, median_data, s, s_form, sd_form, s_range_4, s_range_6, sample_size)
-  names(calculated) <- c("Mean", "Mean with n", "Median", "SD with n", 
-                         "Variance", "SD", "Range 4", "Range 6", "Sample Size")
-  return(calculated)
-}
-```
-
-## Para a média a partir do boxplot  
-
-* Se o n < 25:  
-
-```{r eval=FALSE}
-mn_small <- (a+2*m+b)/4
-```
-
-* Se o n > 25:  
-```{r eval=FALSE}
-  mn_with_n <- (a+2*m+b)/4+(a-2*m+b)/(4*n)
-```
-
-## Para a variância a partir do boxplot  
-
-* Se o n < 15  
-
-```{r eval=FALSE}
-s_form <- ((((a-(2*m)+b)^2)/4)+((b-a)^2))/12
-sd_form <- sqrt(s_form)
-```
-
-* Se o 15 < n < 70  
-
-```{r eval=FALSE}
-s_range_4 <- (b-a)/4
-```
-
-* Se o n > 70  
-
-```{r eval=FALSE}
-s_range_6 <- (b-a)/6
-```
+* Entrar em contato com o(s) autor(es) do trabalho: nem sempre é o desejável, tampouco é garantia de conseguir os dados.
+* Tentar algum tipo de imputação dos dados: você usa relações existentes na base de dados para 'predizer' qual é o valor que foi perdido.
+* Excluir observação da base de dados: não é o desejável, mas é o que precisa ser feito às vezes;  
+* Usar uma medida de tamanho de efeito alternativa.  
 
 ## Como tirar os dados a partir de figuras?
 
@@ -314,10 +257,9 @@ s_range_6 <- (b-a)/6
     + GraphClick
 * O pacote _metagear_ no R também tem uma ferramenta que serve para determinar os pontos em uma figura digitalizada.
 
-## E se houver mais de uma observação para um mesmo estudo?  
+## E se houver mais de uma observação para um mesmo estudo? {.smaller}
 
-* Se, por algum motivo, você vai usar múltiplas observações a partir do mesmo estudo, a forma de entrada de dados é a mesma que a descrita anteriormente.  
-* A regra de ouro continua valendo sempre.  
+* Se, por algum motivo, você vai usar múltiplas observações a partir do mesmo estudo, a forma de entrada de dados é a mesma que a descrita anteriormente (a regra de ouro vale sempre).  
 * A observação deve receber o mesmo número de identificação para a identidade do estudo.  
 
 ```{r echo=FALSE}
@@ -375,6 +317,63 @@ knitr::kable(chance, format = "html", align = 'c')
 * __Documente todas as decisões e escolhas, e relate:__
     + __se extração de dados foi feita por uma única pessoa ou uma equipe__;  
     + __se feito por uma equipe, como você lidou com um possível viés individual__.  
+
+## Como tirar dados de boxplot? {.smaller}
+
+* Hozo et al, 2005, BMC Medical Research Technology, Estimating the mean and variance from the median, range, and the size of a sample
+
+```{r eval=FALSE}
+# a: mínimo; m: mediana; b: máximo; n: tamanho da amostra
+box_size <- function(a,m,b,n) {
+  mn_small <- (a+2*m+b)/4
+  mn_with_n <- (a+2*m+b)/4+(a-2*m+b)/(4*n)
+  s <- sqrt((a*a+m*m+b*b+(n-3)*((a+m)^2+(m+b)^2)/8-n*mn_small*mn_small)/(n-1))
+  s_form <- ((((a-(2*m)+b)^2)/4)+((b-a)^2))/12
+  sd_form <- sqrt(s_form)
+  s_range_4 <- (b-a)/4
+  s_range_6 <- (b-a)/6
+  sample_size <- n
+  median_data <- m
+  calculated <- c(mn_small, mn_with_n, median_data, s, s_form, sd_form, s_range_4, s_range_6, sample_size)
+  names(calculated) <- c("Mean", "Mean with n", "Median", "SD with n", 
+                         "Variance", "SD", "Range 4", "Range 6", "Sample Size")
+  return(calculated)
+}
+```
+
+## Para a média a partir do boxplot  
+
+* Se o n < 25:  
+
+```{r eval=FALSE}
+mn_small <- (a+2*m+b)/4
+```
+
+* Se o n > 25:  
+```{r eval=FALSE}
+  mn_with_n <- (a+2*m+b)/4+(a-2*m+b)/(4*n)
+```
+
+## Para a variância a partir do boxplot  
+
+* Se o n < 15  
+
+```{r eval=FALSE}
+s_form <- ((((a-(2*m)+b)^2)/4)+((b-a)^2))/12
+sd_form <- sqrt(s_form)
+```
+
+* Se o 15 < n < 70  
+
+```{r eval=FALSE}
+s_range_4 <- (b-a)/4
+```
+
+* Se o n > 70  
+
+```{r eval=FALSE}
+s_range_6 <- (b-a)/6
+```
 
 ## Resumindo
 
