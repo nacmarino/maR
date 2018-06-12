@@ -40,3 +40,5 @@ __Número de dias de aula:__ 6 dias, com 7 horas de aula por dia.
 11. Rosenberg, 2005, Evolution, The file-drawer problem revisited - a general weighted method for calculating fail-safe numbers in meta-analysis
 12. Borenstein, M.; Hedges, L.V.; Higgins, J.P.T. & Rothstein, H.R. 2009. Introduction to meta-analysis. John Wiley & Sons, Ltd
 13. Chen, D.-G. & Peace, K.E. 2013. Applied meta-analysis with R
+14. Gerstner et al, 2017, Methods Ecol Evol, Will your paper be used in a meta-analysis - make the reach of your research broader and longer lasting
+15. Gurevitch et al, 2018, Nature, Meta-analysis and the science of research synthesis
