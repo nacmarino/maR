@@ -77,6 +77,37 @@ output:
    
 <center>_z_ = $\frac{\mu}{\sqrt{V_T}}$</center>  
 
+## No R {.smaller}
+
+* Um fixed-effects model (modelo de efeito fixo) pode ser implementado utilizando o argumento `method = "FE"` na função `rma`, disponível no pacote `metafor`.
+
+```{r warning=FALSE, message=FALSE}
+## carregando dados: efeito da riqueza de especies na biomassa total da comunidade
+dados <- read.csv(file = "../98 - dados para exemplos/medias.csv")
+
+## carregando o metafor
+library(metafor)
+
+## calculando a medida do tamanho do efeito Hedge's d
+### Qual o efeito da riqueza de especies na biomassa total da comunidade?
+dados <- escalc(measure = "SMD", # opcao de metrica do tamanho do efeito
+                m1i = media_tratamento, sd1i = sd_tratamento, n1i = n_tratamento, # infos do tratamento
+                m2i = media_controle, sd2i = sd_controle, n2i = n_controle, # infos do controle
+                data = dados) # conjunto de dados de onde extrair as informacoes acima
+```
+
+```{r echo=FALSE}
+dados[1:6, c(1, 2, 12, 13)]
+```
+
+## No R
+
+* Por hora, vamos focar apenas na interpretação do _Model Results_.  
+
+```{r}
+rma(yi = yi, vi = vi, method = "FE", data = dados)
+```
+
 ## Random-effects model
 
 * Usado para estimar a natureza de um efeito;
@@ -127,26 +158,27 @@ output:
 <img src="figs/random_effects_variance.png" height="400px"></img>
 </center>
 
+## No R {.smaller}
+
+* Também usaremos a função `rma` para impletementar um random-effects model (modelo de efeitos aleatórios), mas para isso __não__ precisamos especificar o argumento `method` - o padrão adotado por ele é o do random-effects model.
+
+```{r}
+rma(yi = yi, vi = vi, data = dados)
+```
+
 ## Fixed- _vs_ Random-effects model
 
 * Qual modelo utilizar?
     + RE é mais realístico à meta-análises em ecologia, uma vez que é impossível replicar perfeitamente os experimentos e sistemas de estudos são naturalmente diferentes;
-    + No entanto, RE requer a estimativa de um parâmetro adicional relacionado à variância entre estudos, que pode ter estimativa enviesada por pequeno tamanho amostral ou número de estudos - uso de REML reduz um pouco este problema;
-    + Por conta disso, intervalos de confiança estimados com RE models tendem a ser mais amplos do que aqueles estimados com FE models.
-
-## Fixed- _vs_ Random-effects model
-
-* Note que caso o $\tau^2$ seja 0 (ou muito próximo à zero), a estimativa do peso de cada estudo é reduzida àquela de um fixed-effects model;  
-* Por conta disso, se você precisa, o ideal é tentar um random-effects model e caso o valor de $\tau^2$ seja baixo aí sim adotar um fixed-effects model.  
+    + No entanto, RE requer a estimativa de um parâmetro adicional relacionado à e entre estudos, que pode ser enviesado por pequeno tamanho amostral ou número de estudos - uso de REML atenua este problema;
+    + Um implicação do uso de um termo a mais para a variância: intervalos de confiança estimados com RE models tendem a ser mais amplos do que aqueles estimados com FE models.
 
 <center>
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-library(metafor)
-dat <- escalc(measure="RR", ai=tpos, bi=tneg, ci=cpos, di=cneg, data=dat.bcg)
-mod1 <- rma(yi = yi, vi = vi, data = dat, method = "FE")
-mod2 <- rma(yi = yi, vi = vi, data = dat)
+mod1 <- rma(yi = yi, vi = vi, data = dados, method = "FE")
+mod2 <- rma(yi = yi, vi = vi, data = dados)
 knitr::kable(data.frame(Modelo = c("Fixed-effects model", "Random-effects model"), "Estimate" = c(mod1$b, mod2$b), "SE" = c(mod1$se, mod2$se), 
-           "CI Inferior" = c(mod1$ci.lb, mod2$ci.lb), "CI Superior" = c(mod1$ci.ub, mod2$ci.ub)), format = "html", align = "c", digits = 2)
+           "CI Inferior" = c(mod1$ci.lb, mod2$ci.lb), "CI Superior" = c(mod1$ci.ub, mod2$ci.ub)), format = "html", align = "c", digits = 3)
 ```
 </center>
 
@@ -158,14 +190,48 @@ knitr::kable(data.frame(Modelo = c("Fixed-effects model", "Random-effects model"
 * No R, basta usarmos a função `rma` no `metafor` e especificar a variável que queremos analisar com o argumento `mods`;
 * Você também pode buscar explorar a heterogeneidade ao redor da estimativa do efeito utilizando um fixed-effects model: basta especificar o argumento `method = "FE"` na mesma estrutura do modelo abaixo.
 
+## No R {.smaller}
+
+* Podemos implementar um mixed-effects model (modelo de efeitos mistos) através da função `rma`, __sem especificar__ o argumento `method` e __definindo moderadores__ no argumento `mods`.
+
+```{r}
+rma(yi = yi, vi = vi, mods = ~ ecossistema, data = dados)
+```
+
+## Modelo Hierárquico ou Multinível {.smaller}
+
+* Dentro do contexto meta-analítico, este tipo de modelo permite que se identifique a falta de independência entre observações (_e.g._, várias observações vindas do mesmo estudo).
+* Portanto, dentro deste arcabouço existe parte da heterogeneidade que é oriunda de diferenças entre observações do mesmo estudo (dentro-estudo) e nos efeitos detectados entre estudos (entre-estudos) - similar a um random-effects model.  
+* No nosso exemplo, algumas observações foram feitas pelo mesmo grupo de pesquisa ou foram publicados no mesmo trabalho.
+
+```{r echo=FALSE}
+dados[, c(1, 2, 4, 5, 12, 13)][order(dados$estudo), ]
+```
+
+## No R {.smaller}
+
+* Podemos implementar modelos hierárquicos ou multinível através da função `rma.mv`, com pequenas alterações na sintaxe da função que já conhecíamos.
+* Estrutura de termos aleatórios: __slope aleatório__|__intercepto_aleatório__: 
+    + __Intercepto aleatório:__ existe uma magnitude comum do efeito de __x__ em __y__, mas ela difere de estudo para estudo (uma 'reta' para cada estudo);
+    + __Slope aleatório:__ existe uma relação entre __x__ e __y__ comum a todo o conjunto de dados, mas ela difere de estudo para estudo (a 'reta' de cada estudo tem inclinações diferentes).
+
+<p align="center">
+<img src="figs/slope_intercept_random.png" height="300px"></img>
+</p>
+
+## No R {.smaller}
+
+```{r}
+rma.mv(yi = yi, V = vi, random = ~ 1|estudo, data = dados)
+```
+
 ## Outros modelos mais complexos
 
 * __Meta-Regressão__: é mais uma terminologia para representar os modelos em que a heterogeneidade é explicada por variáveis contínuas (embora algumas pessoas também usem este termo quando usam variáveis categóricas);  
-* __Modelo Hierárquico ou Multivariado__: usado quando estrutura é similar à uma ANOVA aninhada ou quando existe correlação entre as observações. Em alguns casos, você acaba fazendo este tipo de modelo de forma artificial para explorar heterogeneidade em subgrupos dentro dos grupos testados (no R: `rma.mv`);  
 * __Modelo Fatorial__: usado quando a meta-análise segue um desenho fatorial;  
 * __Modelo via Generalized Linear (Mixed-Effects) Models__: similar aos fixed-, random- e mixed-effects model, mas permite usar outras famílias de distribuição de variáveis aleatórias (no R: `rma.glmm`).  
 
-## Observações
+## Observações {.smaller}
 
 * Outros pacotes para rodar os modelos de meta-análise: `nlme` e `lme4`.  
 
@@ -176,7 +242,6 @@ knitr::kable(data.frame(Modelo = c("Fixed-effects model", "Random-effects model"
     + Não-paramétrico: 'cria' populações de effect size baseado nas observações existentes no conjunto de dados utilizado na meta-análise.
 
 * Você também pode usar o _bootstrap_ para calcular intervalos de confiança para cada nível de moderadores categóricos, enquanto que para moderadores contínuos utilizar o _bootstrap_ pode ser um pouco mais complicado.
-
 
 ## Só para ficar didático
 

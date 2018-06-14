@@ -152,23 +152,41 @@ Medidas de efeito também podem ser usadas com diferentes objetivos:
     + 0.2 > |_d_| < 0.8: efeito moderado;
     + |_d_| ≥ 0.8: efeito forte.
 
-## No R
+## No R {.smaller}
 
 * Vamos carregar um conjunto de dados e dar uma olhada nele.  
 ```{r warning=FALSE, message=FALSE}
-library(metafor)
-dat <- get(data(dat.normand1999))
-dat
+dados <- read.csv(file = "../98 - dados para exemplos/medias.csv", header = TRUE)
+str(dados)
 ```
 
 ## No R {.smaller}
 
+* Utilizaremos o pacote `metafor` para realizar todas as tarefas relacionadas à meta-análise.
 * Vamos calcular o valor de _d_ para cada estudo neste conjunto de dados com o `escalc`.  
 * `SMD` especifica o calculo de _d_: **S**tandardized **M**ean **D**ifference.  
 * Incorpora a correção para amostras pequenas.  
 
-```{r warning=FALSE, message=FALSE}
-escalc(measure="SMD", m1i=m1i, sd1i=sd1i, n1i=n1i, m2i=m2i, sd2i=sd2i, n2i=n2i, data=dat)
+```{r warning=FALSE, message=FALSE, eval=FALSE}
+library(metafor)
+escalc(measure = "SMD", # opcao de metrica do tamanho do efeito
+       m1i = media_tratamento, sd1i = sd_tratamento, n1i = n_tratamento, # infos do tratamento
+       m2i = media_controle, sd2i = sd_controle, n2i = n_controle, # infos do controle
+       data = dados) # conjunto de dados de onde extrair as informacoes acima
+```
+
+## No R {.smaller}
+
+* O R vai automaticamente adicionar duas colunas ao conjunto de dados de onde ele extraiu as informações para o calculo do effect size:
+    + `yi` representa a medida do tamanho do efeito em cada observação, que, nesse caso, é o valor de _d_ (diferença entre médias em unidades de desvio padrão); e,  
+    + `vi` representa a estimativa da variância da estimativa do tamanho do efeito em cada observação.  
+
+```{r echo = FALSE, message=FALSE, warning=FALSE}
+library(metafor)
+escalc(measure = "SMD",
+       m1i = media_tratamento, sd1i = sd_tratamento, n1i = n_tratamento,
+       m2i = media_controle, sd2i = sd_controle, n2i = n_controle,
+       data = dados)[, c(1, 2, 4, 12, 13)]
 ```
 
 ## Log Response Ratio
@@ -210,13 +228,19 @@ escalc(measure="SMD", m1i=m1i, sd1i=sd1i, n1i=n1i, m2i=m2i, sd2i=sd2i, n2i=n2i, 
 
 ## No R {.smaller}
 
-* Modificações de Lajeunesse (2015) não foram implementadas (e acho que não serão).  
-* Vamos calcular o valor de LRR para cada estudo neste conjunto de dados com o `escalc`.  
-* `ROM` especifica o calculo do LRR: **R**atio **o**f **M**eans.  
+* Utilizamos também o `escalc` para calcular o LRR, especificando `ROM` como a medida do tamanho do efeito: **R**atio **o**f **M**eans.  
 * O resultado pode ser expresso em %, caso você tire o exponencial do LRR.
 
-```{r warning=FALSE, message=FALSE}
-escalc(measure="ROM", m1i=m1i, sd1i=sd1i, n1i=n1i, m2i=m2i, sd2i=sd2i, n2i=n2i, data=dat)
+```{r warning=FALSE, message=FALSE, eval=FALSE}
+escalc(measure = "ROM", m1i = media_tratamento, sd1i = sd_tratamento, n1i = n_tratamento,
+       m2i = media_controle, sd2i = sd_controle, n2i = n_controle, data = dados)
+```
+
+```{r warning=FALSE, message=FALSE, echo=FALSE}
+escalc(measure = "ROM", 
+       m1i = media_tratamento, sd1i = sd_tratamento, n1i = n_tratamento,
+       m2i = media_controle, sd2i = sd_controle, n2i = n_controle,
+       data = dados)[, c(1, 2, 4, 12, 13)]
 ```
 
 ## Correlação
@@ -241,19 +265,12 @@ escalc(measure="ROM", m1i=m1i, sd1i=sd1i, n1i=n1i, m2i=m2i, sd2i=sd2i, n2i=n2i, 
 
 ## No R {.smaller}
 
-* Vamos usar outro conjunto de dados, próprio para esta finalidade: `dat.mcdaniel1994`.  
 * No `escalc`, `COR` especifica o calculo do effect size baseado no valor bruto da correlação, enquanto `ZCOR` o faz baseado no valor do coeficiente de correlção transformado.  
 * A estimativa da variância não é afetada, uma vez que seu calculo não depende do valor de _r_.  
 
-```{r eval=FALSE}
-dat <- dat.mcdaniel1994
-str(dat)
-escalc(measure="ZCOR", ri=ri, ni=ni, data=dat)
-```
-
-```{r echo=FALSE}
-dat <- dat.mcdaniel1994
-escalc(measure="ZCOR", ri=ri, ni=ni, data=dat)[1:10,]
+```{r warning=FALSE, message=FALSE}
+dados <- read.csv(file = "../98 - dados para exemplos/correlacao.csv")
+escalc(measure = "ZCOR", ri = r, ni = n, data = dados)
 ```
 
 ## Slopes
@@ -276,17 +293,13 @@ escalc(measure="ZCOR", ri=ri, ni=ni, data=dat)[1:10,]
     + Incidence Rate Ratio: razão entre o número de eventos específicos e o número total de eventos em uma população;
     + Estimativas de Padrões: valores que descrevam algum padrão/processo ecológico (emissão de um gás, densidade de plantas em áreas alagadas de um determinado tipo,...).  
 
-## Um exemplo para estimativas de padrões
+## Um exemplo para estimativas de padrões {.smaller}
 
-```{r eval=FALSE}
-dat <- dat.senn2013
-str(dat)
-escalc(measure="MN", mi = mi, sdi=sdi, ni=ni, data=dat)
-```
+* Emissão de gases a partir de diferentes tipos de ecossistemas aquáticos.
 
-```{r echo=FALSE}
-dat <- dat.senn2013
-escalc(measure="MN", mi = mi, sdi=sdi, ni=ni, data=dat)[1:4,-4]
+```{r}
+dados <- read.csv(file = "../98 - dados para exemplos/emissao.csv", header = TRUE)
+escalc(measure = "MN", mi = emissao, sdi = desvio, ni = replicas, data = dados)
 ```
 
 ## Transformando entre métricas {.smaller}
