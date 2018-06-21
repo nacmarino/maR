@@ -41,7 +41,7 @@ knitr::kable(informacoes, align = 'c', format = "html")
 ## Recapitulando
 
 * Esperamos que todos estejam nesta fase.  
-* Com a lista de trabalhos que vão cumprem os critérios de inclusão, o passo seguinte é a extração dos dados.
+* Com a lista de trabalhos que cumprem os critérios de inclusão, o passo seguinte é a extração dos dados.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center', fig.height=3}
 library(DiagrammeR)
@@ -52,7 +52,7 @@ digraph {
       
       node [shape = rectangle]
 
-      a [pos = '0,6!', label = 'Baixe a referência em PDF \n e identifique ele']
+      a [pos = '0,6!', label = 'Baixe a referência em PDF \n e identifique ela']
       b [pos = '0,5!', label = 'Leia o PDF e determine se ele \n cumpre critério de inclusão']
       c [pos = '-3,5!', label = 'Não cumpre', style = filled, fillcolor = red1, fontcolor = white]
       d [pos = '0,4!', label = 'Cumpre', style = filled, fillcolor = green3]
@@ -71,7 +71,7 @@ digraph {
 ## Extração de Dados
 
 * É uma das partes mais importantes de uma revisão sistemática - se não a parte mais importante;  
-* O tempo gasto aqui é o tempo que você nao vai gastar no futuro;  
+* O tempo gasto aqui é o tempo que você não vai gastar no futuro;  
 * Gaste tempo __planejando__:  
     + O(s) critério(s) de inclusão para a extração de dados.    
     + As informações que precisam ser extraídas de cada estudo.   
@@ -161,8 +161,8 @@ digraph {
 
 ## Quais informações extrair?|Estudos multifatoriais
 
-* Por exemplo, você quer saber qual o efeito da adição de nutrientes em uma variáveis resposta _x_, e um estudo manipula a concentração de nutrientes (baixa vs alta) e o disturbio (baixo vs alto) de forma fatorial.  
-* Uma opção é usar os níveis do outro fator como uma 'realidade' pararela: para cada um dos níveis do distúrbio, você vai ter um medida da adição de nutrientes;
+* Por exemplo, você quer saber qual o efeito da adição de nutrientes em uma variáveil resposta _x_, e um estudo manipula a concentração de nutrientes (baixa vs alta) e o distúrbio (baixo vs alto) de forma fatorial.  
+* Uma opção é usar cada nível de um fator como uma 'realidade' pararela para o efeito do outro fator (_e.g._, para  um dos níveis do distúrbio, você vai ter um medida da adição de nutrientes);
 * Outra opção é selecionar um dos níveis do segundo fator e trabalhar apenas com ela, para simplificar as coisas e reduzir ruído.  
 * Se esta for a sua pergunta, você também pode usar uma medida de effect size bifatorial (ou multifatorial, mas aqui complica a interpretação).  
     
@@ -182,8 +182,13 @@ Como você encara dados do mesmo experimento/localidade apresentados em múltipl
 
 ## Como registrar cada informação? {.smaller}
 
+* Tabela de inclusão:  
 ```{r echo=FALSE}
 knitr::kable(informacoes, align = 'c', format = "html")
+```
+
+* Tabela de extração:  
+```{r echo=FALSE}
 estudo <- data.frame(id_estudo = 1:4, 
                      pais = c("Brasil", "Patopolis", "Sao Paulo", "Disneylandia"), 
                      especie = c("araucaria angustifolia", "theobroma cacao", "handroanthus albus", "cecropia hololeuca"),

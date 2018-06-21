@@ -206,26 +206,6 @@ escalc(measure = "SMD",
 <img src="figs/variance_lrr.png" height="70px"></img>
 </p>
 
-## Log Response Ratio
-
-* Lajeunesse (2015) demonstrou que esta formulação do LRR sofre um viés quando tamanho amostral do estudo é pequeno, e pode fornecer estimativas de variância erradas quando a escala dos parâmetros de estudo é próxima a zero (isto é, os valores de média são muito próximos a zero).  
-* Sugere a utilização de dois outros estimadores para o LRR e sua variância:   
-    + LRR^$\Delta$^ (baseado no Método Delta);  
-    + LRR^$\Sigma$^ (baseado na regra de Expecativa de Linearidade).  
-    
-## Log Response Ratio
-
-* LRR^$\Delta$^ fornece estimativas um pouco melhores do que LRR^$\Sigma$^, mas ambos são pouco eficientes quando valores da média beiram o zero.  
-  
-<p align="center">
-<img src="figs/lrr_delta.png" height="70px"></img>
-<img src="figs/variance_lrr_delta.png" height="70px"></img>
-</p>
-<p align="center">
-<img src="figs/lrr_sigma.png" height="70px"></img>
-<img src="figs/variance_lrr_sigma.png" height="100px"></img>
-</p>
-
 ## No R {.smaller}
 
 * Utilizamos também o `escalc` para calcular o LRR, especificando `ROM` como a medida do tamanho do efeito: **R**atio **o**f **M**eans.  
